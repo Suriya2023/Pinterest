@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" type="image/x-icon">
+
+    <title>Pinterest Clone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Background image */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("https://i.pinimg.com/736x/b2/8e/cf/b28ecfa82b814c73c8f481767725a9cf.jpg") no-repeat center center/cover;
+            /* filter: blur(5px) brightness(0.5); */
+            z-index: -1;
+        }
+
+        .a21-modal-container {
+            position: relative;
+            width: 100%;
+            max-width: 484px;
+            background-color: rgba(212, 203, 203, 0.9);
+            border-radius: 32px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 40px 24px;
+            z-index: 1;
+        }
+
+        .a21-close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #111;
+        }
+
+        .a21-pinterest-logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .a21-pinterest-logo img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .a21-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 28px;
+        }
+
+        .a21-form-group {
+            margin-bottom: 16px;
+        }
+
+        .a21-form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 400;
+            margin-bottom: 8px;
+            color: #111;
+        }
+
+        .a21-form-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #cdcdcd;
+            border-radius: 16px;
+            font-size: 16px;
+        }
+
+        .a21-form-input:focus {
+            outline: none;
+            border-color: #0074e8;
+        }
+
+        .a21-form-input.active {
+            border-color: #1890ff;
+            box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+        }
+
+        .a21-password-container {
+            position: relative;
+        }
+
+        .a21-toggle-password {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #111;
+        }
+
+        .a21-forgot-password {
+            text-align: left;
+            margin: 8px 0 20px;
+        }
+
+        .a21-forgot-password a {
+            color: #111;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .a21-forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .a21-login-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #e60023;
+            color: white;
+            border: none;
+            border-radius: 24px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 16px;
+        }
+
+        .a21-login-btn:hover {
+            background-color: #d50c22;
+        }
+
+        .a21-divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #111;
+            margin: 16px 0;
+        }
+
+        .a21-divider-text {
+            padding: 0 16px;
+            font-weight: 600;
+        }
+
+        .a21-social-button {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            border: 1px solid #cdcdcd;
+            border-radius: 24px;
+            background-color: white;
+            cursor: pointer;
+            margin-bottom: 16px;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .a21-facebook-btn {
+            background-color: #1877f2;
+            color: white;
+            border: none;
+        }
+
+        .a21-facebook-btn:hover {
+            background-color: #166fe5;
+        }
+
+        .a21-google-btn {
+            background-color: white;
+            color: #111;
+        }
+
+        .a21-google-btn:hover {
+            background-color: #f8f8f8;
+        }
+
+        .a21-social-icon {
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .a21-terms {
+            text-align: center;
+            font-size: 12px;
+            color: #767676;
+            line-height: 1.4;
+            margin-bottom: 16px;
+        }
+
+        .a21-terms a {
+            color: #111;
+            text-decoration: none;
+        }
+
+        .a21-terms a:hover {
+            text-decoration: underline;
+        }
+
+        .a21-signup {
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .a21-signup a {
+            color: #111;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .a21-signup a:hover {
+            text-decoration: underline;
+        }
+
+        .a21-business {
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .a21-business a {
+            color: #111;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .a21-business a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .a21-modal-container {
+                padding: 24px 16px;
+                border-radius: 24px;
+            }
+
+            .a21-title {
+                font-size: 24px;
+            }
+
+            .a21-form-input {
+                padding: 12px 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background"></div>
+
+    <div class="a21-modal-container">
+        <button class="a21-close-button" onclick="window.location.href ='/' ">×</button>
+
+        <div class="a21-pinterest-logo">
+            <svg viewBox="0 0 24 24" width="40" height="40" fill="#e60023">
+                <path
+                    d="M12 0a12 12 0 0 0-4.37 23.17c-.1-.94-.2-2.4.04-3.44l1.5-6.4s-.38-.77-.38-1.92c0-1.8 1.04-3.15 2.34-3.15 1.1 0 1.64.83 1.64 1.82 0 1.1-.7 2.76-1.08 4.3-.3 1.3.65 2.35 1.93 2.35 2.32 0 4.1-2.45 4.1-6 0-3.14-2.26-5.34-5.48-5.34-3.73 0-5.92 2.8-5.92 5.7 0 1.13.44 2.35 1 3 .1.13.12.24.08.36l-.38 1.54c-.06.25-.2.3-.46.18-1.7-.8-2.76-3.28-2.76-5.3 0-4.13 3-7.9 8.63-7.9 4.54 0 8.08 3.23 8.08 7.54 0 4.5-2.84 8.13-6.78 8.13-1.32 0-2.56-.69-3-1.5l-.8 3.07c-.3 1.13-1.1 2.55-1.64 3.43.93.28 1.9.44 2.92.44A12 12 0 0 0 12 0z" />
+            </svg>
+        </div>
+
+        <h1 class="a21-title">Welcome to Pinterest</h1>
+
+        <form>
+            <div class="a21-form-group">
+                <label class="a21-form-label">Email</label>
+                <input type="email" class="a21-form-input active" placeholder="Email">
+            </div>
+
+            <div class="a21-form-group">
+                <label class="a21-form-label">Password</label>
+                <div class="a21-password-container">
+                    <input type="password" class="a21-form-input" placeholder="Password">
+                    <span class="a21-toggle-password">
+                        <i class="far fa-eye"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="a21-forgot-password">
+                <a href="#">Forgot your password?</a>
+            </div>
+
+            <button type="button" class="a21-login-btn">Log in</button>
+        </form>
+
+        <div class="a21-divider">
+            <span class="a21-divider-text">OR</span>
+        </div>
+
+        <button class="a21-social-button a21-facebook-btn">
+            <span class="a21-social-icon">
+                <i class="fab fa-facebook-f"></i>
+            </span>
+            Continue with Facebook
+        </button>
+
+        <button class="a21-social-button a21-google-btn">
+            <span class="a21-social-icon">
+                <!-- Google Icon -->
+                <i class="fab fa-google"></i>
+            </span>
+            Continue with Google
+        </button>
+
+        <div class="a21-terms">
+            By continuing, you agree to Pinterest's <a href="#">Terms of Service</a> and acknowledge you've read our <a
+                href="#">Privacy Policy</a>. <a href="#">Notice at collection</a>.
+        </div>
+
+        <div class="a21-signup">
+            Not on Pinterest yet? <a href="#">Sign up</a>
+        </div>
+
+        <div class="a21-business">
+            Are you a business? <a href="#">Get started here!</a>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.a21-toggle-password').addEventListener('click', function () {
+            const passwordInput = document.querySelector('.a21-password-container input');
+            const icon = this.querySelector('i');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

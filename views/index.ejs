@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- favorites -->
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" type="image/x-icon">
+
+  <title>Pinterest Clone</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      background-color: white;
+      z-index: 100;
+    }
+
+    .logo {
+      color: #e60023;
+      font-weight: bold;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo svg {
+      fill: #e60023;
+      width: 24px;
+      height: 24px;
+      margin-right: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links a {
+      margin: 0 12px;
+      text-decoration: none;
+      color: #111;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .nav-auth {
+      display: flex;
+      align-items: center;
+    }
+
+    .login-btn {
+      background-color: #e60023;
+      color: white;
+      border: none;
+      border-radius: 24px;
+      padding: 12px 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-right: 8px;
+    }
+
+    .signup-btn {
+      background-color: #efefef;
+      color: #111;
+      border: none;
+      border-radius: 24px;
+      padding: 12px 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .hero h1 {
+      font-size: 60px;
+      margin-bottom: 16px;
+      color: #111;
+    }
+
+    .highlight {
+      color: #0076fc;
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      margin-top: 24px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background-color: #cdcdcd;
+      border-radius: 50%;
+      margin: 0 4px;
+    }
+
+    .dot.active {
+      background-color: #0076fc;
+    }
+
+    .gallery {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0 20px;
+      margin-top: 20px;
+      position: relative;
+    }
+
+    .gallery-column {
+      display: flex;
+      flex-direction: column;
+      padding: 0 6px;
+      width: 236px;
+    }
+
+    .pin {
+      border-radius: 16px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .pin img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .down-arrow {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #0076fc;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .down-arrow svg {
+      fill: white;
+      width: 24px;
+      height: 24px;
+    }
+
+    .how-it-works {
+      background-color: #fff8bd;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+      margin-top: 30px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .how-it-works svg {
+      width: 16px;
+      height: 16px;
+      margin-left: 6px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 12px 16px;
+      }
+
+      .nav-links a:not(:first-child) {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .gallery-column {
+        width: 48%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-column {
+        width: 100%;
+      }
+    }
+
+    .a17 {
+      background-color: #e4fbf8;
+      overflow-x: hidden;
+    }
+
+    .a1 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 40px;
+      min-height: 100vh;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .a2 {
+      position: relative;
+      width: 45%;
+      height: 600px;
+    }
+
+    .a3 {
+      position: absolute;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .a4 {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .a5 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      width: 300px;
+      background-color: white;
+      border-radius: 30px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .a6 {
+      margin-right: 10px;
+      color: #333;
+    }
+
+    .a7 {
+      border: none;
+      outline: none;
+      font-size: 16px;
+      width: 100%;
+      color: #5a287d;
+      font-weight: bold;
+    }
+
+    .a7::placeholder {
+      color: #5a287d;
+      font-weight: bold;
+    }
+
+    .a8 {
+      width: 260px;
+      height: 260px;
+      top: 40px;
+      left: 0;
+      z-index: 1;
+    }
+
+    .a9 {
+      width: 230px;
+      height: 230px;
+      top: 0;
+      right: 60px;
+      z-index: 2;
+    }
+
+    .a10 {
+      width: 200px;
+      height: 280px;
+      bottom: 20px;
+      left: 100px;
+      z-index: 3;
+    }
+
+    .a11 {
+      width: 180px;
+      height: 180px;
+      bottom: 0;
+      right: 0;
+      z-index: 2;
+    }
+
+    .a12 {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background-color: #ffc72c;
+      border-radius: 32px;
+      top: 120px;
+      left: 40px;
+      z-index: 0;
+    }
+
+    .a13 {
+      width: 45%;
+      padding-left: 40px;
+    }
+
+    .a14 {
+      font-size: 56px;
+      font-weight: 700;
+      color: #c8205a;
+      margin-bottom: 24px;
+      line-height: 1.1;
+    }
+
+    .a15 {
+      font-size: 20px;
+      line-height: 1.4;
+      color: #c8205a;
+      margin-bottom: 32px;
+    }
+
+    .a16 {
+      background-color: #e60023;
+      color: white;
+      border: none;
+      border-radius: 24px;
+      padding: 14px 28px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .a16:hover {
+      background-color: #d50021;
+    }
+
+    @media screen and (max-width: 1024px) {
+      .a1 {
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      .a2 {
+        width: 90%;
+        height: 500px;
+        margin-bottom: 40px;
+      }
+
+      .a13 {
+        width: 90%;
+        padding-left: 0;
+        text-align: center;
+      }
+
+      .a14 {
+        font-size: 44px;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .a2 {
+        height: 400px;
+      }
+
+      .a8 {
+        width: 200px;
+        height: 200px;
+      }
+
+      .a9 {
+        width: 170px;
+        height: 170px;
+      }
+
+      .a10 {
+        width: 160px;
+        height: 220px;
+        left: 60px;
+      }
+
+      .a11 {
+        width: 140px;
+        height: 140px;
+      }
+
+      .a12 {
+        width: 220px;
+        height: 220px;
+      }
+
+      .a5 {
+        width: 250px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .a1 {
+        padding: 10px;
+      }
+
+      .a2 {
+        height: 350px;
+      }
+
+      .a8 {
+        width: 160px;
+        height: 160px;
+      }
+
+      .a9 {
+        width: 140px;
+        height: 140px;
+        right: 30px;
+      }
+
+      .a10 {
+        width: 120px;
+        height: 180px;
+        left: 40px;
+      }
+
+      .a11 {
+        width: 100px;
+        height: 100px;
+      }
+
+      .a12 {
+        width: 180px;
+        height: 180px;
+        left: 20px;
+      }
+
+      .a5 {
+        width: 200px;
+        padding: 12px 16px;
+      }
+
+      .a14 {
+        font-size: 36px;
+      }
+
+      .a15 {
+        font-size: 16px;
+      }
+
+      .a16 {
+        padding: 12px 24px;
+        font-size: 16px;
+      }
+    }
+
+    .a18body {
+      background-color: #ffebf0;
+      overflow-x: hidden;
+    }
+
+    .a18-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 40px;
+      min-height: 100vh;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .a18-left-content {
+      width: 40%;
+      padding-right: 40px;
+    }
+
+    .a18-heading {
+      font-size: 54px;
+      font-weight: 700;
+      color: #0e6e73;
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+
+    .a18-subheading {
+      font-size: 20px;
+      line-height: 1.5;
+      color: #0e6e73;
+      margin-bottom: 30px;
+    }
+
+    .a18-button {
+      background-color: #e60023;
+      color: white;
+      border: none;
+      border-radius: 24px;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .a18-button:hover {
+      background-color: #d50021;
+    }
+
+    .a18-right-content {
+      width: 60%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      position: relative;
+    }
+
+    .a18-card {
+      border-radius: 32px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .a18-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .a18-card-text {
+      position: absolute;
+      bottom: 30px;
+      left: 20px;
+      color: white;
+      font-weight: bold;
+      font-size: 24px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      max-width: 80%;
+    }
+
+    .a18-card-large {
+      grid-column: 1;
+      grid-row: 1 / span 3;
+      aspect-ratio: 1 / 1.3;
+    }
+
+    .a18-card-small {
+      aspect-ratio: 1 / 0.8;
+    }
+
+    .a18-card-small-1 {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .a18-card-small-2 {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .a18-card-small-3 {
+      grid-column: 2;
+      grid-row: 3;
+    }
+
+    .a18-fern-gallery {
+      position: absolute;
+      bottom: 100px;
+      left: 20px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .a18-mini-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .a18-mini-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media screen and (max-width: 1024px) {
+      .a18-container {
+        flex-direction: column;
+        padding: 30px;
+      }
+
+      .a18-left-content {
+        width: 100%;
+        padding-right: 0;
+        margin-bottom: 40px;
+        text-align: center;
+      }
+
+      .a18-right-content {
+        width: 100%;
+      }
+
+      .a18-heading {
+        font-size: 44px;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .a18-right-content {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .a18-card {
+        width: 100%;
+      }
+
+      .a18-card-large {
+        aspect-ratio: 1 / 0.8;
+      }
+
+      .a18-fern-gallery {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        margin-top: -70px;
+        margin-left: 20px;
+        z-index: 10;
+      }
+
+      .a18-mini-image {
+        width: 60px;
+        height: 60px;
+      }
+
+      .a18-card-text {
+        font-size: 20px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .a18-container {
+        padding: 20px;
+      }
+
+      .a18-heading {
+        font-size: 36px;
+      }
+
+      .a18-subheading {
+        font-size: 16px;
+      }
+
+      .a18-card-text {
+        font-size: 18px;
+        bottom: 20px;
+        left: 15px;
+      }
+
+      .a18-mini-image {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    .a19-container {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .a19-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .a19-background::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      z-index: 1;
+    }
+
+    .a19-background-item {
+      background-size: cover;
+      background-position: center;
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .a19-background-item::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 230, 0, 0.2);
+    }
+
+    .a19-slogan {
+      position: absolute;
+      top: 40%;
+      left: 10%;
+      transform: translateY(-50%);
+      color: white;
+      font-size: 2.5rem;
+      font-weight: bold;
+      z-index: 2;
+      width: 40%;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .a19-login-modal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      border-radius: 32px;
+      padding: 40px;
+      width: 400px;
+      max-width: 90%;
+      z-index: 3;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .a19-pinterest-logo {
+      color: #E60023;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .a19-welcome-text {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      color: #333;
+    }
+
+    .a19-form-label {
+      display: block;
+      text-align: left;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    .a19-form-group {
+      margin-bottom: 16px;
+    }
+
+    .a19-form-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #ddd;
+      border-radius: 16px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    .a19-form-input:focus {
+      outline: none;
+      border-color: #0076d3;
+    }
+
+    .a19-password-container {
+      position: relative;
+    }
+
+    .a19-toggle-password {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #666;
+    }
+
+    .a19-forgot-password {
+      text-align: left;
+      margin: 8px 0 20px;
+    }
+
+    .a19-forgot-password a {
+      color: #333;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .a19-forgot-password a:hover {
+      text-decoration: underline;
+    }
+
+    .a19-login-btn {
+      width: 100%;
+      padding: 14px;
+      background-color: #E60023;
+      color: white;
+      border: none;
+      border-radius: 24px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .a19-login-btn:hover {
+      background-color: #d50021;
+    }
+
+    .a19-divider {
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+      color: #767676;
+      font-size: 0.9rem;
+    }
+
+    .a19-divider::before,
+    .a19-divider::after {
+      content: '';
+      flex-grow: 1;
+      height: 1px;
+      background-color: #ddd;
+    }
+
+    .a19-divider span {
+      padding: 0 10px;
+    }
+
+    .a19-social-login {
+      margin-bottom: 20px;
+    }
+
+    .a19-social-btn {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 24px;
+      background-color: white;
+      font-size: 1rem;
+      margin-bottom: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s;
+    }
+
+    .a19-social-btn:hover {
+      background-color: #f5f5f5;
+    }
+
+    .a19-facebook-btn {
+      background-color: #1877F2;
+      color: white;
+      border: none;
+    }
+
+    .a19-facebook-btn:hover {
+      background-color: #166fe5;
+    }
+
+    .a19-social-btn i {
+      margin-right: 10px;
+    }
+
+    .a19-terms {
+      font-size: 0.8rem;
+      color: #767676;
+      margin-top: 20px;
+      line-height: 1.4;
+    }
+
+    .a19-terms a {
+      color: #333;
+      text-decoration: none;
+    }
+
+    .a19-terms a:hover {
+      text-decoration: underline;
+    }
+
+    .a19-signup-link {
+      margin-top: 20px;
+      font-size: 0.9rem;
+    }
+
+    .a19-signup-link a {
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .a19-signup-link a:hover {
+      text-decoration: underline;
+    }
+
+    .a19-business-link {
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+
+    .a19-business-link a {
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .a19-business-link a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .a19-background {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .a19-slogan {
+        display: none;
+      }
+
+      .a19-login-modal {
+        width: 90%;
+        padding: 30px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .a19-background {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .a19-login-modal {
+        padding: 24px 16px;
+      }
+
+      .a19-welcome-text {
+        font-size: 1.5rem;
+      }
+    }
+
+    .a198body {
+      height: 100%;
+      width: 100%;
+      background: url('https://i.pinimg.com/736x/06/24/e0/0624e0d7fa9f20e9abc8beb90af95d33.jpg') center/cover no-repeat;
+
+
+    }
+
+    .a19-container {
+      display: flex;
+      border-radius: 5%;
+      padding: 2vmin;
+      /* background: rgba(0, 0, 0, 0.4); */
+      align-items: center;
+      justify-content: end;
+      min-height: 100vh;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .a19-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* background: rgba(0, 0, 0, 0.4); */
+      z-index: 1;
+    }
+
+    .a19-left-text {
+      position: absolute;
+      left: 50px;
+      color: white;
+      font-size: 2.5rem;
+      z-index: 2;
+      max-width: 300px;
+    }
+
+    .a19-form-wrapper {
+      position: relative;
+      z-index: 3;
+      background: rgba(167, 138, 138, 0.8);
+      padding: 40px 30px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 400px;
+      /* box-shadow: 0 4px /20px rgba(0, 0, 0, 0.2); */
+    }
+
+    .a19-form-wrapper img {
+      display: block;
+      margin: 0 auto 20px;
+      height: 40px;
+    }
+
+    .a19-form-wrapper h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .a19-input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .a19-password-toggle {
+      position: relative;
+    }
+
+    .a19-password-toggle input {
+      padding-right: 40px;
+    }
+
+    .a19-forgot {
+      text-align: right;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      display: block;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .a19-btn-red {
+      width: 100%;
+      padding: 12px;
+      background-color: #e60023;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .a19-divider {
+      text-align: center;
+      margin: 15px 0;
+      font-weight: bold;
+    }
+
+    .a19-btn-facebook,
+    .a19-btn-google {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .a19-btn-facebook {
+      background-color: #1877F2;
+      color: white;
+    }
+
+    .a19-btn-google {
+      background: white;
+      border: 1px solid #ccc;
+    }
+
+    .a19-footer {
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 10px;
+    }
+
+    .a19-footer a {
+      font-weight: bold;
+      text-decoration: none;
+      color: #000;
+    }
+
+    @media (max-width: 768px) {
+      .a19-left-text {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <svg height="24" width="24" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img">
+        <path
+          d="M0 12c0 5.123 3.211 9.497 7.73 11.218-.11-.937-.227-2.482.025-3.566.217-.932 1.401-5.938 1.401-5.938s-.357-.715-.357-1.774c0-1.66.962-2.9 2.161-2.9 1.02 0 1.512.765 1.512 1.682 0 1.025-.653 2.557-.99 3.978-.281 1.189.597 2.159 1.769 2.159 2.123 0 3.756-2.239 3.756-5.471 0-2.861-2.056-4.86-4.991-4.86-3.398 0-5.393 2.549-5.393 5.184 0 1.027.395 2.127.889 2.726a.36.36 0 0 1 .083.343c-.091.378-.293 1.189-.332 1.355-.053.218-.173.265-.4.159-1.492-.694-2.424-2.875-2.424-4.627 0-3.769 2.737-7.229 7.892-7.229 4.144 0 7.365 2.953 7.365 6.899 0 4.117-2.595 7.431-6.199 7.431-1.211 0-2.348-.63-2.738-1.373 0 0-.599 2.282-.744 2.84-.282 1.084-1.064 2.456-1.549 3.235C9.584 23.815 10.77 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0 0 5.373 0 12">
+        </path>
+      </svg>
+      Pinterest
+    </div>
+
+    <div class="nav-auth">
+      <div class="nav-links">
+        <a href="#">Explore</a>
+        <a href="#">About</a>
+        <a href="#">Business</a>
+        <a href="#">Blog</a>
+      </div>&nbsp;&nbsp;
+      <button onclick="window.location.href='/loginus'" class="login-btn">Log in</button>
+      <button onclick="window.location.href='/RegisterUs'" class="signup-btn">Sign up</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Get your next <br><span class="highlight">home decor idea</span></h1>
+    <div class="dots">
+      <div class="dot"></div>
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </section>
+
+  <div class="gallery">
+    <div class="gallery-column">
+      <div class="pin">
+        <img src="https://i.pinimg.com/474x/1f/49/d5/1f49d5e65a97bf4da35848209f499453.jpg"
+          alt="Yellow and beige home decor items">
+      </div>
+      <div class="pin">
+        <img src="https://i.pinimg.com/474x/24/67/5d/24675ddb09ca34e6207d845c01a7ece0.jpg" alt="Decorative lanterns">
+      </div>
+    </div>
+    <div class="gallery-column">
+      <div class="pin">
+        <img src="https://i.pinimg.com/474x/4c/f7/31/4cf731fe6163549506dcb222776cd0b4.jpg"
+          alt="Ganesh statue with flowers">
+      </div>
+      <div class="pin">
+        <img src="https://i.pinimg.com/474x/34/53/10/345310117bcff3961773a11fd7d44b3f.jpg" alt="Decorative pillows">
+      </div>
+    </div>
+    <div class="gallery-column">
+      <div class="pin">
+        <img src="https://i.pinimg.com/474x/30/65/98/306598fad80bde77d05f07c0f8a3f519.jpg" alt="Indoor plant">
+      </div>
+      <div class="pin">
+        <img src="https://i.pinimg.com/474x/ea/30/8d/ea308d1a72d377e9b681ddb12b2c3358.jpg" alt="Minimalist living room">
+      </div>
+    </div>
+    <div class="gallery-column">
+      <div class="pin">
+        <img src="https://i.pinimg.com/474x/78/97/00/7897001e1043904e38890446e43a16e4.jpg" alt="Colorful boho pillows">
+      </div>
+      <div class="pin">
+        <img src="https://i.pinimg.com/474x/c1/d1/e7/c1d1e7de718848a98167fbf9665bd6ce.jpg" alt="Patterned textile">
+      </div>
+    </div>
+    <div class="gallery-column">
+      <div class="pin">
+        <img src="https://i.pinimg.com/474x/9d/d3/01/9dd301a7bbd506bd06636feacc3238fc.jpg"
+          alt="Green cabinet with artwork">
+      </div>
+      <div class="pin">
+        <img src="https://i.pinimg.com/474x/a1/2b/9d/a12b9df05ed905d3e8cc3937e7aed812.jpg" alt="Colorful throw blanket">
+      </div>
+    </div>
+
+    <div class="down-arrow">
+      <svg height="12" width="12" viewBox="0 0 24 24">
+        <path
+          d="M12 19.5.66 8.29c-.88-.86-.88-2.27 0-3.14.88-.87 2.3-.87 3.18 0L12 13.21l8.16-8.06c.88-.87 2.3-.87 3.18 0 .88.87.88 2.28 0 3.14L12 19.5z"
+          fill="#ffffff"></path>
+      </svg>
+    </div>
+  </div>
+
+  <div class="how-it-works">
+    Here's how it works
+    <svg height="10" width="10" viewBox="0 0 24 24">
+      <path
+        d="M12 19.5.66 8.29c-.88-.86-.88-2.27 0-3.14.88-.87 2.3-.87 3.18 0L12 13.21l8.16-8.06c.88-.87 2.3-.87 3.18 0 .88.87.88 2.28 0 3.14L12 19.5z">
+      </path>
+    </svg>
+  </div>
+
+  <!--second -->
+  <div class="a17">
+    <div class="a1">
+      <div class="a2">
+        <div class="a12"></div>
+
+        <div class="a5">
+          <span class="a6">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M10 16c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6m13.12 2.88-4.26-4.26A9.842 9.842 0 0 0 20 10c0-5.52-4.48-10-10-10S0 4.48 0 10s4.48 10 10 10c1.67 0 3.24-.41 4.62-1.14l4.26 4.26a3 3 0 0 0 4.24 0 3 3 0 0 0 0-4.24">
+              </path>
+            </svg>
+          </span>
+          <input class="a7" type="text" placeholder="easy chicken dinner">
+        </div>
+
+        <div class="a3 a8">
+          <img class="a4" src="https://s.pinimg.com/webapp/left-ccce7532.png" alt="Food plate with salad">
+        </div>
+
+        <div class="a3 a9">
+          <img class="a4" src="https://s.pinimg.com/webapp/center-2d76a691.png" alt="Spicy food">
+        </div>
+
+        <div class="a3 a10">
+          <img class="a4" src="https://s.pinimg.com/webapp/right-2bd1edfc.png" alt="Food plate with chicken">
+        </div>
+
+        <div class="a3 a11">
+          <img class="a4" src="https://s.pinimg.com/webapp/topRight-6902088a.png" alt="Food ingredients">
+        </div>
+      </div>
+
+      <div class="a13">
+        <h1 class="a14">Search for an idea</h1>
+        <p class="a15">What do you want to try next? Think of something you're into—like "easy chicken dinner"—and see
+          what you find.</p>
+        <button class="a16">Explore</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- third -->
+
+  <div class="a18body">
+    <div class="a18-container">
+      <div class="a18-left-content">
+        <h1 class="a18-heading">Save ideas you like</h1>
+        <p class="a18-subheading">Collect your favorites so you can get back to them later.</p>
+        <button class="a18-button">Explore</button>
+      </div>
+
+      <div class="a18-right-content">
+        <div class="a18-card a18-card-large">
+          <img src="https://i.pinimg.com/474x/b6/e6/17/b6e617f0240604b6cd5909c94eb9d882.jpg" alt="Fern home interior">
+          <div class="a18-card-text">Fern future home vibes</div>
+          <div class="a18-fern-gallery">
+            <div class="a18-mini-image">
+              <img src="https://i.pinimg.com/474x/47/20/58/472058ab688feab84dd76550cd0d3d0c.jpg"
+                alt="Modern white room">
+            </div>
+            <div class="a18-mini-image">
+              <img src="https://i.pinimg.com/474x/c1/d1/e7/c1d1e7de718848a98167fbf9665bd6ce.jpg"
+                alt="Plants living room">
+            </div>
+            <div class="a18-mini-image">
+              <img src="https://i.pinimg.com/474x/42/8d/e2/428de27c400978ab89c96cbc82646c66.jpg" alt="Cozy corner">
+            </div>
+          </div>
+        </div>
+
+        <div class="a18-card a18-card-small a18-card-small-1">
+          <img src="https://i.pinimg.com/736x/55/90/3b/55903b8d2e8dae85b68dd78fe890fe98.jpg" alt="Scandinavian bedroom">
+          <div class="a18-card-text">My Scandinavian bedroom</div>
+        </div>
+
+        <div class="a18-card a18-card-small a18-card-small-2">
+          <img src="https://i.pinimg.com/474x/fb/1c/8b/fb1c8b4bca0d77d2236baad6905760d4.jpg" alt="Outdoor deck">
+          <div class="a18-card-text">The deck of my dreams</div>
+        </div>
+
+        <!-- <div class="a18-card a18-card-small a18-card-small-3">
+          <img src="https://i.pinimg.com/474x/96/ed/d9/96edd99c07155a1e6680df5086f8bf1f.jpg" alt="Orange pitcher">
+          <div class="a18-card-text">Serve my drinks in style</div>
+        </div> -->
+
+        <!-- <div class="a18-card a18-card-small a18-card-small-4"
+          style="position: absolute; right: -20px; bottom: -50px; z-index: 1; width: 300px;">
+          <img src="/api/placeholder/300/240" alt="Modern bathroom">
+          <div class="a18-card-text">Our bathroom upgrade</div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- forth -->
+  <div class="a198body">
+    <div class="a19-container">
+      <div class="a19-overlay"></div>
+      <div class="a19-left-text">
+        Log in to get your ideas
+      </div>
+      <div class="a19-form-wrapper">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" alt="Pinterest Logo">
+        <h2>Welcome to Pinterest</h2>
+        <input type="email" class="a19-input" placeholder="Email">
+        <div class="a19-password-toggle">
+          <input type="password" class="a19-input" placeholder="Password">
+        </div>
+        <a href="#" class="a19-forgot">Forgot your password?</a>
+        <button class="a19-btn-red">Log in</button>
+        <div class="a19-divider">OR</div>
+        <button class="a19-btn-facebook">Continue with Facebook</button>
+        <button class="a19-btn-google">Continue with Google</button>
+        <div class="a19-footer">
+          Not on Pinterest yet? <a href="#">Sign up</a><br>
+          Are you a business? <a href="#">Get started here!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Script to change the highlighted text over time
+    const highlights = ["home decor idea", "DIY project", "recipe to try", "style inspiration"];
+    let currentIndex = 0;
+    const highlightElement = document.querySelector('.highlight');
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % highlights.length;
+      highlightElement.textContent = highlights[currentIndex];
+
+      // Update active dot
+      document.querySelectorAll('.dot').forEach((dot, index) => {
+        if (index === currentIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }, 3000);
+
+
+  </script>
+</body>
+
+</html>
