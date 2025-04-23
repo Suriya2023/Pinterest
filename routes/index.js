@@ -18,7 +18,7 @@ router.get("/RegisterUs", function (req, res) {
 
 router.post("/register", function (req, res) {
   let userData = new userModel({
-    usernam: req.body.usernam,
+    username: req.body.username,
     email: req.body.email
   })
   userModel.register(userData, req.body.password).then(function (registeruser) {

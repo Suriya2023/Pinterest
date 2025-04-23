@@ -255,16 +255,16 @@
         <h1 class="a20-title">Welcome to Pinterest</h1>
         <p class="a20-subtitle">Find new ideas to try</p>
 
-        <form>
+        <form method="post" action="/register">
             <div class="a20-form-group">
                 <label class="a20-form-label">Email</label>
-                <input type="email" class="a20-form-input" placeholder="Email">
+                <input name="email" type="email" class="a20-form-input" placeholder="Email">
             </div>
 
             <div class="a20-form-group">
                 <label class="a20-form-label">Password</label>
                 <div class="a20-password-container">
-                    <input type="password" class="a20-form-input" placeholder="Create a password">
+                    <input name="password" type="password" class="a20-form-input" placeholder="Create a password">
                     <span class="a20-toggle-password">
                         <i class="far fa-eye"></i>
                     </span>
@@ -273,11 +273,11 @@
 
             <div class="a20-form-group">
                 <label class="a20-form-label">
-                    Birthdate
+                    Username
                     <span class="a20-info-icon"><i class="fas fa-info-circle"></i></span>
                 </label>
                 <div class="a20-date-container">
-                    <input type="text" class="a20-form-input" placeholder="mm/dd/yyyy">
+                    <input type="text" name="username" class="a20-form-input" placeholder=" Username">
                     <span class="a20-calendar-icon"><i class="far fa-calendar"></i></span>
                 </div>
             </div>
