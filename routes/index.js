@@ -23,7 +23,7 @@ router.post("/register", function (req, res) {
   })
   userModel.register(userData, req.body.password).then(function (registeruser) {
     passport.authenticate('local')(req, res, function () {
-      res.redirect('/prifile')
+      res.redirect('/profile')
     })
   })
 })
@@ -40,10 +40,10 @@ router.get('/profile', isLoggedIn, function (req, res) {
 
 
 function isLoggedIn(req, res, next) {
-  if (req.IsAuthenticated()) {
+  if (req.isAuthenticated()) {
     return next()
 
-  } res.redirdct('/')
+  } res.redirect('/')
 
 }
 module.exports = router;
