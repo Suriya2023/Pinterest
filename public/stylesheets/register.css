@@ -1,0 +1,233 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    background: url('https://i.pinimg.com/736x/3c/c7/98/3cc7989fe56888ef1f8bdfab58b521a7.jpg') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.a20-modal-container {
+    position: relative;
+    width: 100%;
+    max-width: 484px;
+    background-color: rgba(219, 202, 211, 0.9);
+    border-radius: 32px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    padding: 40px 24px;
+    z-index: 1;
+}
+
+.a20-close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #111;
+}
+
+.a20-pinterest-logo {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.a20-pinterest-logo svg {
+    width: 40px;
+    height: 40px;
+}
+
+.a20-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 8px;
+}
+
+.a20-subtitle {
+    text-align: center;
+    font-size: 16px;
+    color: #111;
+    margin-bottom: 24px;
+}
+
+.a20-form-group {
+    margin-bottom: 16px;
+}
+
+.a20-form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: #111;
+}
+
+.a20-form-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #cdcdcd;
+    border-radius: 16px;
+    font-size: 16px;
+}
+
+.a20-form-input:focus {
+    outline: none;
+    border-color: #0074e8;
+}
+
+.a20-password-container {
+    position: relative;
+}
+
+.a20-toggle-password {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #111;
+}
+
+.a20-info-icon {
+    margin-left: 8px;
+    color: #767676;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.a20-date-container {
+    position: relative;
+}
+
+.a20-calendar-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #111;
+}
+
+.a20-continue-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #e60023;
+    color: white;
+    border: none;
+    border-radius: 24px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 16px;
+}
+
+.a20-continue-btn:hover {
+    background-color: #d50c22;
+}
+
+.a20-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #111;
+    margin: 16px 0;
+    justify-content: space-around;
+}
+
+.a20-divider::before,
+.a20-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #cdcdcd;
+}
+
+.a20-divider-text {
+    padding: 0 16px;
+    font-weight: 600;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.a20-google-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border: 1px solid #cdcdcd;
+    border-radius: 24px;
+    background-color: white;
+    cursor: pointer;
+    margin-bottom: 16px;
+}
+
+.a20-google-btn:hover {
+    background-color: #f7f7f7;
+}
+
+.a20-google-icon {
+    margin-right: 8px;
+}
+
+.a20-terms,
+.a20-login,
+.a20-business {
+    text-align: center;
+}
+
+.a20-terms {
+    font-size: 12px;
+    color: #767676;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.a20-terms a,
+.a20-login a,
+.a20-business a {
+    color: #111;
+    text-decoration: none;
+}
+
+.a20-terms a:hover,
+.a20-login a:hover,
+.a20-business a:hover {
+    text-decoration: underline;
+}
+
+.a20-login {
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.a20-business {
+    padding: 16px 0;
+    border-top: 1px solid #cdcdcd;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+@media (max-width: 480px) {
+    .a20-modal-container {
+        padding: 24px 16px;
+        border-radius: 24px;
+    }
+
+    .a20-title {
+        font-size: 24px;
+    }
+
+    .a20-form-input {
+        padding: 12px 14px;
+    }
+}

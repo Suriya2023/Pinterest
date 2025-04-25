@@ -9,9 +9,15 @@ passport.use(new lacalStrategy(userModel.authenticate()))
 router.get('/', function (req, res) {
   res.render('index');
 });
+// create a route for registerUs and Loginus
+router.get("/FinalPage", isLoggedIn, function (req, res) {
+  res.render('FinalPage')
+})
+
 router.get("/loginus", function (req, res) {
   res.render("login")
 })
+
 router.get("/RegisterUs", function (req, res) {
   res.render("Register")
 })
@@ -23,20 +29,20 @@ router.post("/register", function (req, res) {
   })
   userModel.register(userData, req.body.password).then(function (registeruser) {
     passport.authenticate('local')(req, res, function () {
-      res.redirect('/profile')
+      res.redirect('/FinalPage')
     })
   })
 })
 
 router.post('/login', passport.authenticate('local', {
-  successRedirect: "profile",
+  successRedirect: "/FinalPage",
   failureRedirect: "/"
 }), function (req, res) { })
 
-router.get('/profile', isLoggedIn, function (req, res) {
-  res.send("Congratulation your are loggedIn")
+// router.get('/profile', isLoggedIn, function (req, res) {
+//   res.render('FinalPage')
 
-})
+// })
 
 
 function isLoggedIn(req, res, next) {
