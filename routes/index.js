@@ -17,6 +17,9 @@ router.get("/FinalPage", isLoggedIn, function (req, res) {
 router.get("/loginus", function (req, res) {
   res.render("login")
 })
+router.get('/account',function(req,res){
+  res.render('account')
+})
 
 router.get("/RegisterUs", function (req, res) {
   res.render("Register")

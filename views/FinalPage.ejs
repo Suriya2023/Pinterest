@@ -11,99 +11,99 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         .a1ContainerBody {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            padding: 15px;
-        }
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    padding: 15px;
+}
 
-        .a1Container {
-            column-count: 5;
-            column-gap: 15px;
-            width: 100%;
-            max-width: 1600px;
-            margin: 0 auto;
-        }
+.a1Container {
+    column-count: 5;
+    column-gap: 15px;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
 
-        @media (max-width: 1200px) {
-            .a1Container {
-                column-count: 4;
-            }
-        }
+@media (max-width: 1200px) {
+    .a1Container {
+        column-count: 4;
+    }
+}
 
-        @media (max-width: 992px) {
-            .a1Container {
-                column-count: 3;
-            }
-        }
+@media (max-width: 992px) {
+    .a1Container {
+        column-count: 3;
+    }
+}
 
-        @media (max-width: 768px) {
-            .a1Container {
-                column-count: 2;
-            }
-        }
+@media (max-width: 768px) {
+    .a1Container {
+        column-count: 2;
+    }
+}
 
-        @media (max-width: 576px) {
-            .a1Container {
-                column-count: 1;
-            }
-        }
+@media (max-width: 576px) {
+    .a1Container {
+        column-count: 1;
+    }
+}
 
-        .a1Item {
-            break-inside: avoid;
-            margin-bottom: 15px;
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
+.a1Item {
+    break-inside: avoid;
+    margin-bottom: 15px;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
 
-        .a1Item:hover {
-            transform: translateY(-5px);
-        }
+.a1Item:hover {
+    transform: translateY(-5px);
+}
 
-        .a1Image {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
+.a1Image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
 
-        .a1Video {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
+.a1Video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
 
-        .a1Caption {
-            padding: 10px;
-            font-size: 14px;
-            color: #333;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+.a1Caption {
+    padding: 10px;
+    font-size: 14px;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
-        .a1Sponsored {
-            padding: 3px 10px;
-            font-size: 12px;
-            color: #777;
-        }
+.a1Sponsored {
+    padding: 3px 10px;
+    font-size: 12px;
+    color: #777;
+}
 
-        .a1AdIcon {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-        }
+.a1AdIcon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
     </style>
 </head>
 
@@ -125,7 +125,7 @@
             <div class="sidebar-icon">
                 <i class="fas fa-comment-dots"></i>
             </div>
-            <div class="sidebar-icon">
+            <div  onclick="window.location.href='/account'" class="sidebar-icon">
                 <i class="fas fa-user"></i>
             </div>
             <div class="sidebar-icon">
@@ -140,16 +140,16 @@
                     <input type="text" class="search-input" placeholder="Search">
                 </div>
                 <div class="profile">
-                    <div class="profile-icon">
+                    <!-- <div class="profile-icon">
                         <i class="fas fa-bell"></i>
                     </div>
                     <div class="profile-icon">
                         <i class="fas fa-comment-dots"></i>
-                    </div>
-                    <div class="profile-menu">
-                        <div class="profile-icon" id="profileMenuBtn">R</div>
+                    </div> -->
+                    <div  class="profile-menu">
+                        <div class="profile-icon" id="profileMenuBtn">S</div>
                         <div class="dropdown-menu" id="profileDropdown">
-                            <div class="dropdown-header">
+                            <div onclick="window.location.href='/account'"  style="cursor: pointer;" class="dropdown-header">
                                 <h4>Robert Sr</h4>
                                 <p>robert123@gmail.com</p>
                             </div>
@@ -171,11 +171,16 @@
                             <div class="a1Caption">Interactive PDF Resume Template</div>
                         </div>
 
-                        <div class="a1Item">
+                        <div class="pin">
                             <img loading="lazy"
-                                src="https://i.pinimg.com/736x/3b/77/10/3b77102e79f1b4bf5ee53b65c4a4f805.jpg"
-                                alt="Luxury in Motion: Realistic Car Render" class="a1Image">
-                            <div class="a1Caption">Luxury in Motion: Realistic Car Render</div>
+                                src="https://i.pinimg.com/736x/97/d8/ac/97d8ac512092b685c935db1649d7a151.jpg"
+                                alt="White Ferrari F50">
+                            <div class="pin-title">White Ferrari F50</div>
+                        </div>
+                        <div class="pin">
+                            <img loading="lazy"
+                                src="https://i.pinimg.com/474x/0b/d3/b7/0bd3b723d68b5696e51bd5ecbc2a61bd.jpg"
+                                alt="Interior Design">
                         </div>
 
                         <div class="a1Item">
@@ -279,6 +284,12 @@
 
                         <div class="a1Item">
                             <img loading="lazy"
+                                src="https://i.pinimg.com/736x/3b/77/10/3b77102e79f1b4bf5ee53b65c4a4f805.jpg"
+                                alt="Luxury in Motion: Realistic Car Render" class="a1Image">
+                            <div class="a1Caption">Luxury in Motion: Realistic Car Render</div>
+                        </div>
+                        <div class="a1Item">
+                            <img loading="lazy"
                                 src="https://i.pinimg.com/236x/5c/3a/f7/5c3af7fbdd6e84a8685cba9f286c7782.jpg"
                                 alt="Professional Services Website" class="a1Image">
                             <div class="a1Caption">Professional Services Website UI</div>
@@ -329,68 +340,97 @@
                                 alt="4k HD Wallpaper: Lightning Car" class="a1Image">
                             <div class="a1Caption">4k HD Wallpaper: Lightning Car</div>
                         </div>
-                       
+
                     </div>
-                </div>
+                </div><br>
 
                 <div class="masonry-grid">
+
                     <div class="pin">
-                        <img loading="lazy" src="/api/placeholder/400/320" alt="White Ferrari F50">
-                        <div class="pin-title">White Ferrari F50</div>
+                        <img loading="lazy"
+                            src="https://i.pinimg.com/736x/88/a4/61/88a4614caa1940adbfd8aeb853e839e3.jpg"
+                            alt="HD Wallpaper: Lightning">
                     </div>
                     <div class="pin">
-                        <img loading="lazy" src="/api/placeholder/400/280" alt="Interior Design">
+                        <img loading="lazy"
+                            src="https://i.pinimg.com/736x/ac/f1/b8/acf1b88c976aabdaba77be1668b3e04e.jpg"
+                            alt="Dark Silhouette">
+                    </div>
+                    <br>
+                    <div class="pin">
+                        <img loading="lazy"
+                            src="https://i.pinimg.com/474x/e3/a6/b1/e3a6b11fd7875759e78b61251470bbae.jpg"
+                            alt="Batman - Edit">
                     </div>
                     <div class="pin">
-                        <img loading="lazy" src="/api/placeholder/400/200" alt="HD Wallpaper: Lightning">
+                        <img loading="lazy"
+                            src="https://i.pinimg.com/474x/fc/02/64/fc026433a20db53bc4447d4e41f8f830.jpg"
+                            alt="Cityscape">
+                    </div>
+
+                    <div class="pin">
+                        <img loading="lazy"
+                            src="https://i.pinimg.com/474x/a5/67/ea/a567ea71e816d3df31cb72eefdaafe10.jpg"
+                            alt="Relaxed cat">
                     </div>
                     <div class="pin">
-                        <img loading="lazy" src="/api/placeholder/400/500" alt="Dark Silhouette">
+                        <img loading="lazy"
+                            src="https://i.pinimg.com/474x/6f/75/fe/6f75fee0de602907c462735f7326fab8.jpg"
+                            alt="Multiverse Xmas">
+                    </div>
+
+                    <div class="pin">
+                        <img loading="lazy"
+                            src="https://i.pinimg.com/474x/f4/f2/38/f4f238b6582742daa054f2e8827bdafa.jpg"
+                            alt="Dark Vader">
                     </div>
                     <div class="pin">
-                        <img loading="lazy" src="/api/placeholder/400/300" alt="Batman - Edit">
+                        <img loading="lazy"
+                            src="https://i.pinimg.com/736x/ab/1c/91/ab1c9110308a114c566d30aa37693dc0.jpg" alt="Panda">
                     </div>
                     <div class="pin">
-                        <img loading="lazy" src="/api/placeholder/400/260" alt="Cityscape">
+                        <img loading="lazy"
+                            src=" https://i.pinimg.com/474x/38/a5/80/38a5802600e0d7ffea5e57fa30a9db93.jpg"
+                            alt="Gaming Setup">
                     </div>
                     <div class="pin">
-                        <img loading="lazy" src="/api/placeholder/400/240" alt="HD wallpaper: oriented pearl">
+                        <img loading="lazy"
+                            src="https://i.pinimg.com/474x/de/39/a1/de39a12236a727794f0ac7d400262dd7.jpg"
+                            alt="Digital Sunset">
                     </div>
                     <div class="pin">
-                        <img loading="lazy" src="/api/placeholder/400/200" alt="4K PC Wallpapers Free">
+                        <img loading="lazy"
+                            src="https://i.pinimg.com/474x/65/d6/b6/65d6b6447e454e4d6a45a4e056d5cb6e.jpg"
+                            alt="Ocean Wave">
                     </div>
                     <div class="pin">
-                        <img loading="lazy" src="/api/placeholder/400/300" alt="Galaxy">
+                        <img loading="lazy"
+                            src="https://i.pinimg.com/474x/59/db/b4/59dbb4c4b91975d5d9941a4f6e4a7366.jpg"
+                            alt="Black Smoke Art">
                     </div>
                     <div class="pin">
-                        <img loading="lazy" src="/api/placeholder/400/280" alt="Relaxed cat">
+                        <img loading="lazy"
+                            src="https://i.pinimg.com/474x/86/a4/ab/86a4abca20de93ec2cf6c25ad6e4a639.jpg"
+                            alt="HD wallpaper: oriented pearl">
                     </div>
                     <div class="pin">
-                        <img loading="lazy" src="/api/placeholder/400/450" alt="Multiverse Xmas">
+                        <img loading="lazy"
+                            src="https://i.pinimg.com/736x/5f/b6/8d/5fb68dbd0442abce0b102f59b2a5fc8e.jpg"
+                            alt="4K PC Wallpapers Free">
                     </div>
                     <div class="pin">
-                        <img loading="lazy" src="/api/placeholder/400/200" alt="Gaming Setup">
+                        <img loading="lazy"
+                            src="https://i.pinimg.com/474x/53/23/06/5323067a9fc061f9996692fb27e811c2.jpg" alt="Galaxy">
                     </div>
                     <div class="pin">
-                        <img loading="lazy" src="/api/placeholder/400/240" alt="Dark Vader">
+                        <img loading="lazy"
+                            src="https://i.pinimg.com/474x/34/5f/3f/345f3f06b8160e946e782d6047313fe5.jpg"
+                            alt="Red Bird">
                     </div>
                     <div class="pin">
-                        <img loading="lazy" src="/api/placeholder/400/380" alt="Panda">
-                    </div>
-                    <div class="pin">
-                        <img loading="lazy" src="/api/placeholder/400/200" alt="Digital Sunset">
-                    </div>
-                    <div class="pin">
-                        <img loading="lazy" src="/api/placeholder/400/320" alt="Ocean Wave">
-                    </div>
-                    <div class="pin">
-                        <img loading="lazy" src="/api/placeholder/400/420" alt="Black Smoke Art">
-                    </div>
-                    <div class="pin">
-                        <img loading="lazy" src="/api/placeholder/400/200" alt="Red Bird">
-                    </div>
-                    <div class="pin">
-                        <img loading="lazy" src="/api/placeholder/400/350" alt="Movie Interface">
+                        <img loading="lazy"
+                            src="https://i.pinimg.com/474x/0a/2d/87/0a2d8786e0b21bf90cb57f8ed0b89085.jpg"
+                            alt="Movie Interface">
                     </div>
                 </div>
 
@@ -417,7 +457,7 @@
                     </div>
                 </div>
 
-               
+
             </div>
         </div>
 
