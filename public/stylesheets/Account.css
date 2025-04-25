@@ -11,9 +11,8 @@ body {
 }
 
 .container {
-    /* max-width: 1200px; */
-    width: 100%;
     margin: 0 auto;
+    width: 100%;
     padding: 20px;
 }
 
@@ -95,7 +94,7 @@ body {
 .tabs {
     display: flex;
     justify-content: center;
-    /* border-bottom: 1px solid #e9e9e9; */
+    border-bottom: 1px solid #e9e9e9;
     margin-bottom: 24px;
 }
 
@@ -122,6 +121,18 @@ body {
 
 .tab:not(.active) {
     color: #767676;
+}
+
+.content-area {
+    width: 100%;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
 }
 
 .empty-state {
@@ -178,6 +189,41 @@ body {
     cursor: pointer;
 }
 
+.pin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    padding: 20px 0;
+}
+
+.pin-item {
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+}
+
+.pin-image {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    background-color: #f0f0f0;
+    position: relative;
+}
+
+.pin-title {
+    padding: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.empty-created {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
 @media (max-width: 768px) {
     .profile-image {
         width: 100px;
@@ -186,6 +232,10 @@ body {
     
     .profile-name {
         font-size: 24px;
+    }
+    
+    .pin-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 }
 
@@ -198,5 +248,9 @@ body {
     .btn {
         width: 100%;
         text-align: center;
+    }
+    
+    .pin-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     }
 }

@@ -11,99 +11,99 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         .a1ContainerBody {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    padding: 15px;
-}
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 15px;
+        }
 
-.a1Container {
-    column-count: 5;
-    column-gap: 15px;
-    width: 100%;
-    max-width: 1600px;
-    margin: 0 auto;
-}
+        .a1Container {
+            column-count: 5;
+            column-gap: 15px;
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
 
-@media (max-width: 1200px) {
-    .a1Container {
-        column-count: 4;
-    }
-}
+        @media (max-width: 1200px) {
+            .a1Container {
+                column-count: 4;
+            }
+        }
 
-@media (max-width: 992px) {
-    .a1Container {
-        column-count: 3;
-    }
-}
+        @media (max-width: 992px) {
+            .a1Container {
+                column-count: 3;
+            }
+        }
 
-@media (max-width: 768px) {
-    .a1Container {
-        column-count: 2;
-    }
-}
+        @media (max-width: 768px) {
+            .a1Container {
+                column-count: 2;
+            }
+        }
 
-@media (max-width: 576px) {
-    .a1Container {
-        column-count: 1;
-    }
-}
+        @media (max-width: 576px) {
+            .a1Container {
+                column-count: 1;
+            }
+        }
 
-.a1Item {
-    break-inside: avoid;
-    margin-bottom: 15px;
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
+        .a1Item {
+            break-inside: avoid;
+            margin-bottom: 15px;
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
 
-.a1Item:hover {
-    transform: translateY(-5px);
-}
+        .a1Item:hover {
+            transform: translateY(-5px);
+        }
 
-.a1Image {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-}
+        .a1Image {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
 
-.a1Video {
-    width: 100%;
-    height: auto;
-    display: block;
-}
+        .a1Video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 
-.a1Caption {
-    padding: 10px;
-    font-size: 14px;
-    color: #333;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+        .a1Caption {
+            padding: 10px;
+            font-size: 14px;
+            color: #333;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
-.a1Sponsored {
-    padding: 3px 10px;
-    font-size: 12px;
-    color: #777;
-}
+        .a1Sponsored {
+            padding: 3px 10px;
+            font-size: 12px;
+            color: #777;
+        }
 
-.a1AdIcon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-}
+        .a1AdIcon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
     </style>
 </head>
 
@@ -116,16 +116,18 @@
             <div class="sidebar-icon active">
                 <i class="fas fa-home"></i>
             </div>
-            <div class="sidebar-icon">
-                <i class="fas fa-search"></i>
-            </div>
+          
             <div class="sidebar-icon">
                 <i class="fas fa-bell"></i>
+            </div>
+            <div onclick="window.location.href='/post'"  class="sidebar-icon">
+                <!-- <i class="fas fa-search"></i> -->
+                <i class="fa-solid fa-plus"></i>
             </div>
             <div class="sidebar-icon">
                 <i class="fas fa-comment-dots"></i>
             </div>
-            <div  onclick="window.location.href='/account'" class="sidebar-icon">
+            <div onclick="window.location.href='/account'" class="sidebar-icon">
                 <i class="fas fa-user"></i>
             </div>
             <div class="sidebar-icon">
@@ -146,10 +148,11 @@
                     <div class="profile-icon">
                         <i class="fas fa-comment-dots"></i>
                     </div> -->
-                    <div  class="profile-menu">
+                    <div class="profile-menu">
                         <div class="profile-icon" id="profileMenuBtn">S</div>
                         <div class="dropdown-menu" id="profileDropdown">
-                            <div onclick="window.location.href='/account'"  style="cursor: pointer;" class="dropdown-header">
+                            <div onclick="window.location.href='/account'" style="cursor: pointer;"
+                                class="dropdown-header">
                                 <h4>Robert Sr</h4>
                                 <p>robert123@gmail.com</p>
                             </div>

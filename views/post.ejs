@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="/stylesheets/Post.css">
+    <title>Create Pin - Pinterest</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1 class="header-title">Create Pin</h1>
+            <button onclick="window.location.href='/FinalPage'" class="back-button">&#10094;&#10094;</button>
+        </header>
+
+        <div class="pin-creator">
+            <div class="pin-image-section">
+                <div class="upload-container">
+                    <input type="file" id="file-input" class="file-input" accept="image/*,video/mp4">
+                    <div class="upload-icon">&#8593;</div>
+                    <p class="upload-text">Choose a file or drag and drop<br>it here</p>
+                    <p class="upload-recommendation">We recommend using high quality .jpg files less than 20 MB or .mp4
+                        files less than 200 MB.</p>
+                    <img id="preview-image" class="preview-image">
+                </div>
+                <button class="url-button">Save from URL</button>
+            </div>
+
+            <div class="pin-details-section">
+                <div class="form-group">
+                    <label class="form-label">Title</label>
+                    <input type="text" class="form-input" id="pin-title" placeholder="Add a title">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-textarea" id="pin-description"
+                        placeholder="Add a detailed description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Link</label>
+                    <input type="text" class="form-input" id="pin-link" placeholder="Add a link">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Board</label>
+                    <div class="select-container">
+                        <select class="select-input" id="pin-board">
+                            <option disabled selected>Choose a board</option>
+                            <option value="home-decor">Home Decor</option>
+                            <option value="recipes">Recipes</option>
+                            <option value="diy">DIY Projects</option>
+                            <option value="fashion">Fashion</option>
+                        </select>
+                        <div class="select-arrow">&#9662;</div>
+                    </div>
+                </div>
+
+                <div class="form-group tags-section">
+                    <label class="form-label">Tagged topics (0)</label>
+                    <input type="text" class="form-input" id="pin-tags" placeholder="Search for a tag">
+                    <p class="tags-hint">Don't worry, people won't see your tags</p>
+                </div>
+
+                <div class="more-options">
+                    More options &#9662;
+                </div>
+
+                <div class="buttons-container">
+                    <button class="draft-button" id="draft-button">Save as draft</button>
+                    <button class="publish-button" id="publish-button">Publish</button>
+                </div>
+
+                <div class="status-message" id="status-message"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('file-input');
+        const previewImage = document.getElementById('preview-image');
+        const uploadIcon = document.querySelector('.upload-icon');
+        const uploadText = document.querySelector('.upload-text');
+        const uploadRecommendation = document.querySelector('.upload-recommendation');
+
+        fileInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    previewImage.src = e.target.result;
+                    previewImage.style.display = 'block';
+                    uploadIcon.style.display = 'none';
+                    uploadText.style.display = 'none';
+                    uploadRecommendation.style.display = 'none';
+                }
+
+                reader.readAsDataURL(file);
+            }
+        });
+
+        const uploadContainer = document.querySelector('.upload-container');
+
+        uploadContainer.addEventListener('dragover', function (e) {
+            e.preventDefault();
+            this.style.borderColor = '#e60023';
+        });
+
+        uploadContainer.addEventListener('dragleave', function (e) {
+            e.preventDefault();
+            this.style.borderColor = '#e0e0f0';
+        });
+
+        uploadContainer.addEventListener('drop', function (e) {
+            e.preventDefault();
+            this.style.borderColor = '#e0e0f0';
+
+            const file = e.dataTransfer.files[0];
+            if (file && (file.type.startsWith('image/') || file.type === 'video/mp4')) {
+                fileInput.files = e.dataTransfer.files;
+
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    previewImage.src = e.target.result;
+                    previewImage.style.display = 'block';
+                    uploadIcon.style.display = 'none';
+                    uploadText.style.display = 'none';
+                    uploadRecommendation.style.display = 'none';
+                }
+
+                reader.readAsDataURL(file);
+            }
+        });
+
+        const publishButton = document.getElementById('publish-button');
+        const draftButton = document.getElementById('draft-button');
+        const statusMessage = document.getElementById('status-message');
+        const pinTitle = document.getElementById('pin-title');
+        const pinDescription = document.getElementById('pin-description');
+        const pinLink = document.getElementById('pin-link');
+        const pinBoard = document.getElementById('pin-board');
+
+        function validateForm() {
+            if (!fileInput.files[0]) {
+                showStatus('Please upload an image or video', 'info');
+                return false;
+            }
+
+            if (!pinTitle.value.trim()) {
+                showStatus('Please add a title', 'info');
+                return false;
+            }
+
+            if (pinBoard.value === 'Choose a board') {
+                showStatus('Please select a board', 'info');
+                return false;
+            }
+
+            return true;
+        }
+
+        function showStatus(message, type) {
+            statusMessage.textContent = message;
+            statusMessage.className = 'status-message ' + type;
+            statusMessage.style.display = 'block';
+
+            setTimeout(() => {
+                statusMessage.style.display = 'none';
+            }, 3000);
+        }
+
+        publishButton.addEventListener('click', function () {
+            if (validateForm()) {
+                const pinData = {
+                    title: pinTitle.value,
+                    description: pinDescription.value,
+                    link: pinLink.value,
+                    board: pinBoard.value,
+                    published: true
+                };
+
+                console.log('Publishing pin:', pinData);
+                showStatus('Pin published successfully!', 'success');
+
+
+            }
+        });
+
+        draftButton.addEventListener('click', function () {
+            if (fileInput.files[0]) {
+                const pinData = {
+                    title: pinTitle.value || 'Untitled',
+                    description: pinDescription.value,
+                    link: pinLink.value,
+                    board: pinBoard.value,
+                    published: false
+                };
+
+                console.log('Saving draft:', pinData);
+                showStatus('Draft saved successfully!', 'success');
+
+
+            } else {
+                showStatus('Please upload an image or video', 'info');
+            }
+        });
+    </script>
+</body>
+
+</html>

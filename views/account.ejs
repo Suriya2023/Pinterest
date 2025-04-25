@@ -1,60 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" type="image/x-icon">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/Account.css">
-    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" type="image/x-icon">
     <title>Pinterest Profile</title>
-  
+
 </head>
+
 <body>
-    <div  class="container">
+    <div class="container">
         <button onclick="window.location.href='/FinalPage'" class="back-button">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
             </svg>
         </button>
 
         <div class="profile-section">
             <div class="profile-image">
-                <img src="https://i.pinimg.com/280x280_RS/06/55/e7/0655e784b7bab337285e3f1ac1711e05.jpg" alt="Profile picture" width="120" height="120">
+                <img src="https://i.pinimg.com/280x280_RS/06/55/e7/0655e784b7bab337285e3f1ac1711e05.jpg"
+                    alt="Profile picture" width="120" height="120">
             </div>
             <h1 class="profile-name">Rajput Sr</h1>
             <div class="profile-username">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L15 8L21 9L16.5 14L18 20L12 17L6 20L7.5 14L3 9L9 8L12 2Z" stroke="#767676" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 2L15 8L21 9L16.5 14L18 20L12 17L6 20L7.5 14L3 9L9 8L12 2Z" stroke="#767676" fill="none"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
                 srrajput221221
             </div>
             <div class="follow-info">0 following</div>
             <div class="actions">
                 <button class="btn btn-secondary">Share</button>
-                <button class="btn btn-secondary">Edit profile</button>
+                <button onclick="window.location.href='/edditPf'" class="btn btn-secondary">Edit profile</button>
             </div>
         </div>
 
         <div class="tabs">
-            <div class="tab">Created</div>
-            <div class="tab active">Saved</div>
+            <div id="created-tab" class="tab">Created</div>
+            <div id="saved-tab" class="tab active">Saved</div>
         </div>
 
-        <div class="empty-state">
-            <div class="empty-state-icon">
-                <svg viewBox="0 0 100 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="5" y="5" width="40" height="60" rx="8" stroke="black" stroke-width="2"/>
-                    <rect x="55" y="15" width="40" height="50" rx="8" stroke="black" stroke-width="2"/>
-                    <path d="M15 15 L8 8" stroke="black" stroke-width="2"/>
-                    <path d="M85 25 L92 18" stroke="black" stroke-width="2"/>
-                </svg>
+        <div class="content-area">
+            <div id="created-content" class="tab-content">
+                <div class="empty-created">
+                    <div class="empty-state-icon">
+                        <svg viewBox="0 0 100 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="35" r="25" stroke="black" stroke-width="2" />
+                            <path d="M40 35 L60 35" stroke="black" stroke-width="2" />
+                            <path d="M50 25 L50 45" stroke="black" stroke-width="2" />
+                        </svg>
+                    </div>
+                    <h2 class="empty-state-title">Create your first Pin</h2>
+                    <p class="empty-state-text">Pins are visual bookmarks you create for ideas you love</p>
+                    <button class="btn btn-primary">Create Pin</button>
+                </div>
             </div>
-            <h2 class="empty-state-title">Keep track of what inspires you</h2>
-            <p class="empty-state-text">Boards help you organize the Pins you save into collections</p>
-            <button class="btn btn-primary">Create board</button>
+
+            <div id="saved-content" class="tab-content active">
+                <div class="empty-state">
+                    <div class="empty-state-icon">
+                        <svg viewBox="0 0 100 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="5" y="5" width="40" height="60" rx="8" stroke="black" stroke-width="2" />
+                            <rect x="55" y="15" width="40" height="50" rx="8" stroke="black" stroke-width="2" />
+                            <path d="M15 15 L8 8" stroke="black" stroke-width="2" />
+                            <path d="M85 25 L92 18" stroke="black" stroke-width="2" />
+                        </svg>
+                    </div>
+                    <h2 class="empty-state-title">Keep track of what inspires you</h2>
+                    <p class="empty-state-text">Boards help you organize the Pins you save into collections</p>
+                    <button class="btn btn-primary">Create board</button>
+                </div>
+            </div>
         </div>
     </div>
 
     <button class="help-button">?</button>
+
+    <script>
+        // Tab switching functionality
+        const createdTab = document.getElementById('created-tab');
+        const savedTab = document.getElementById('saved-tab');
+        const createdContent = document.getElementById('created-content');
+        const savedContent = document.getElementById('saved-content');
+
+        createdTab.addEventListener('click', function () {
+            // Update active tab
+            createdTab.classList.add('active');
+            savedTab.classList.remove('active');
+
+            // Update visible content
+            createdContent.classList.add('active');
+            savedContent.classList.remove('active');
+        });
+
+        savedTab.addEventListener('click', function () {
+            // Update active tab
+            savedTab.classList.add('active');
+            createdTab.classList.remove('active');
+
+            // Update visible content
+            savedContent.classList.add('active');
+            createdContent.classList.remove('active');
+        });
+    </script>
 </body>
+
 </html>

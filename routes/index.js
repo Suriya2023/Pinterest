@@ -17,9 +17,7 @@ router.get("/FinalPage", isLoggedIn, function (req, res) {
 router.get("/loginus", function (req, res) {
   res.render("login")
 })
-router.get('/account',function(req,res){
-  res.render('account')
-})
+
 
 router.get("/RegisterUs", function (req, res) {
   res.render("Register")
@@ -46,6 +44,19 @@ router.post('/login', passport.authenticate('local', {
 //   res.render('FinalPage')
 
 // })
+
+router.get('/account',function(req,res){
+  res.render('account')
+})
+
+router.get('/edditPf',function(req,res){
+  res.render('edditPf')
+})
+
+router.get('/post',function(req,res){
+  res.render('post')
+})
+
 
 
 function isLoggedIn(req, res, next) {
