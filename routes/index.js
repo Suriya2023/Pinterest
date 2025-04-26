@@ -57,6 +57,11 @@ router.get('/post',function(req,res){
   res.render('post')
 })
 
+router.get('/Dashboard',function(req,res){
+  res.render('Dashboard')
+})
+
+
 
 
 function isLoggedIn(req, res, next) {

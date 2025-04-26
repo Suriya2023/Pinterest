@@ -9,129 +9,34 @@
     <link rel="stylesheet" href="/stylesheets/FinalPage.css">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        .a1ContainerBody {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            padding: 15px;
-        }
 
-        .a1Container {
-            column-count: 5;
-            column-gap: 15px;
-            width: 100%;
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-
-        @media (max-width: 1200px) {
-            .a1Container {
-                column-count: 4;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .a1Container {
-                column-count: 3;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .a1Container {
-                column-count: 2;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .a1Container {
-                column-count: 1;
-            }
-        }
-
-        .a1Item {
-            break-inside: avoid;
-            margin-bottom: 15px;
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .a1Item:hover {
-            transform: translateY(-5px);
-        }
-
-        .a1Image {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-
-        .a1Video {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .a1Caption {
-            padding: 10px;
-            font-size: 14px;
-            color: #333;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .a1Sponsored {
-            padding: 3px 10px;
-            font-size: 12px;
-            color: #777;
-        }
-
-        .a1AdIcon {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-        }
-    </style>
 </head>
 
 <body>
     <div class="app-container">
         <div class="sidebar">
-            <div class="sidebar-icon logo">
+            <div onclick="window.location.href='/FinalPage'" class="sidebar-icon logo">
                 <i class="fab fa-pinterest"></i>
             </div>
-            <div class="sidebar-icon active">
+            <div id="OnopenOnhome" title="Home" class="sidebar-icon active">
                 <i class="fas fa-home"></i>
             </div>
-          
-            <div class="sidebar-icon">
+
+            <div title="notification" id="OnopenNotification" class="sidebar-icon">
                 <i class="fas fa-bell"></i>
             </div>
-            <div onclick="window.location.href='/post'"  class="sidebar-icon">
+            <div title="Post" onclick="window.location.href='/post'" class="sidebar-icon">
                 <!-- <i class="fas fa-search"></i> -->
                 <i class="fa-solid fa-plus"></i>
             </div>
-            <div class="sidebar-icon">
+            <div title="Chate" class="sidebar-icon">
                 <i class="fas fa-comment-dots"></i>
             </div>
-            <div onclick="window.location.href='/account'" class="sidebar-icon">
+            <div title="User" onclick="window.location.href='/account'" class="sidebar-icon">
                 <i class="fas fa-user"></i>
             </div>
-            <div class="sidebar-icon">
-                <i class="fas fa-ellipsis-h"></i>
+            <div title="Settings" class="sidebar-icon">
+                <i class="fa-solid fa-gear"></i>
             </div>
         </div>
 
@@ -151,7 +56,7 @@
                     <div class="profile-menu">
                         <div class="profile-icon" id="profileMenuBtn">S</div>
                         <div class="dropdown-menu" id="profileDropdown">
-                            <div onclick="window.location.href='/account'" style="cursor: pointer;"
+                            <div onclick="window.location.href='/Dashboard'" style="cursor: pointer;"
                                 class="dropdown-header">
                                 <h4>Robert Sr</h4>
                                 <p>robert123@gmail.com</p>
@@ -164,7 +69,7 @@
                 </div>
             </div>
 
-            <div class="content-area">
+            <div id="DomNone" class="content-area">
                 <div id="a1ContainerBody">
                     <div class="a1Container">
                         <div class="a1Item">
@@ -346,7 +251,35 @@
 
                     </div>
                 </div><br>
-
+                <div class="ideas-section">
+                    <h3>Ideas you might like</h3>
+                    <div class="idea-cards">
+                        <div class="idea-card">
+                            <img loading="lazy"
+                                src=" https://i.pinimg.com/474x/17/41/08/174108b2de8e7d9bdc3217a2310fb022.jpg"
+                                alt="Colorful destinations">
+                            <div class="idea-card-footer">Colorful</div>
+                        </div>
+                        <div class="idea-card">
+                            <img loading="lazy"
+                                src="https://i.pinimg.com/474x/e9/3b/de/e93bdeafd2adee28201542c86c0d2cde.jpg"
+                                alt="Beach wallpapers">
+                            <div class="idea-card-footer"> wallpapers</div>
+                        </div>
+                        <div class="idea-card">
+                            <img loading="lazy"
+                                src="https://i.pinimg.com/474x/20/5a/e4/205ae4a3e0390877cbb074e4625d1bc9.jpg"
+                                alt="Dubai table & rings">
+                            <div class="idea-card-footer">Study Stress</div>
+                        </div>
+                        <div class="idea-card">
+                            <img loading="lazy"
+                                src="https://i.pinimg.com/474x/5f/a9/06/5fa906299ffb2a157046eead5231a583.jpg"
+                                alt="Desert photography">
+                            <div class="idea-card-footer">Decent photography</div>
+                        </div>
+                    </div>
+                </div>
                 <div class="masonry-grid">
 
                     <div class="pin">
@@ -438,36 +371,218 @@
                 </div>
 
 
-                <div class="ideas-section">
-                    <h3>Ideas you might like</h3>
-                    <div class="idea-cards">
-                        <div class="idea-card">
-                            <img loading="lazy" src="/api/placeholder/200/120" alt="Colorful destinations">
-                            <div class="idea-card-footer">Colorful destinations</div>
+
+
+
+            </div>
+
+
+            <!-- notification  -->
+
+            <div id="NontficationOn" style="display: none;" class="idNotficaton">
+                <div class="a22-main-content">
+
+                    <div class="a22-updates">
+
+                        <div>
+                            <button onclick="window.location.href='/FinalPage'"
+                                class="back-button">&#10094;&#10094;</button>
+
                         </div>
-                        <div class="idea-card">
-                            <img loading="lazy" src="/api/placeholder/200/120" alt="Beach wallpapers">
-                            <div class="idea-card-footer">Beach wallpapers</div>
+                        <br><br>
+                        <h2>Updates</h2>
+
+                        <div class="a22-updates-section">
+                            <h3>New</h3>
+                            <div class="a22-update-item">
+                                <div class="a22-update-image">
+                                    <img src="https://i.pinimg.com/136x136/e1/14/e1/e114e1e890809eeeab7b64e7d04e431d.jpg"
+                                        alt="Placeholder image">
+                                </div>
+                                <div class="a22-update-text">
+                                    <p>You have a good eye</p>
+                                </div>
+                                <span class="a22-update-time">2h</span>
+                            </div>
                         </div>
-                        <div class="idea-card">
-                            <img loading="lazy" src="/api/placeholder/200/120" alt="Dubai table & rings">
-                            <div class="idea-card-footer">Dubai table & rings</div>
-                        </div>
-                        <div class="idea-card">
-                            <img loading="lazy" src="/api/placeholder/200/120" alt="Desert photography">
-                            <div class="idea-card-footer">Desert photography</div>
+
+                        <div class="a22-updates-section">
+                            <h3>Seen</h3>
+                            <div class="a22-update-item">
+                                <div class="a22-update-image">
+                                    <img src="https://i.pinimg.com/136x136/60/95/71/609571a4584664c8b1f34026b96aedcc.jpg"
+                                        alt="Placeholder image">
+                                </div>
+                                <div class="a22-update-text">
+                                    <p>This could be your vibe</p>
+                                </div>
+                                <span class="a22-update-time">8h</span>
+                            </div>
+
+                            <div class="a22-update-item">
+                                <div class="a22-update-image">
+                                    <img src="https://i.pinimg.com/136x136/ae/0b/24/ae0b242114a9926c3c5378db6f63473e.jpg"
+                                        alt="Placeholder image">
+                                </div>
+                                <div class="a22-update-text">
+                                    <p>Web and App Design for you</p>
+                                </div>
+                                <span class="a22-update-time">1d</span>
+                            </div>
+
+                            <div class="a22-update-item">
+                                <div class="a22-update-image">
+                                    <img src="https://i.pinimg.com/136x136/05/3f/a8/053fa838ddb01395202a3b944688ca4f.jpg"
+                                        alt="Placeholder image">
+                                </div>
+                                <div class="a22-update-text">
+                                    <p>You have a good eye</p>
+                                </div>
+                                <span class="a22-update-time">1d</span>
+                            </div>
+
+                            <div class="a22-search-item">
+                                <div class="a22-search-icon">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <div class="a22-search-text">
+                                    <p>Still searching? Explore ideas related to <span>Background</span></p>
+                                </div>
+                                <span class="a22-update-time">1d</span>
+                            </div>
+
+                            <div class="a22-update-item">
+                                <div class="a22-update-image">
+                                    <img src="https://i.pinimg.com/136x136/d3/6f/29/d36f29b825a38f79eb3b294c498a3fca.jpg"
+                                        alt="Placeholder image">
+                                </div>
+                                <div class="a22-update-text">
+                                    <p>Weather and Climate for you</p>
+                                </div>
+                                <span class="a22-update-time">3d</span>
+                            </div>
+
+                            <div class="a22-update-item">
+                                <div class="a22-update-image">
+                                    <img src="https://i.pinimg.com/136x136/f7/d2/7f/f7d27f9603b5127edefbd742fbfd0e40.jpg"
+                                        alt="Placeholder image">
+                                </div>
+                                <div class="a22-update-text">
+                                    <p>These ideas are so you</p>
+                                </div>
+                                <span class="a22-update-time">3d</span>
+                            </div>
+
+                            <div class="a22-update-item">
+                                <div class="a22-update-image">
+                                    <img src="https://i.pinimg.com/136x136/17/49/03/17490377c4973cae52906c2325a35db9.jpg"
+                                        alt="Placeholder image">
+                                </div>
+                                <div class="a22-update-text">
+                                    <p>Black for you</p>
+                                </div>
+                                <span class="a22-update-time">3d</span>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="a22-feed">
+                        <div class="a22-feed-header">
+                            <h2>April 25, 2025</h2>
+                            <h1>Stay Inspired</h1>
+
+
+
+                        </div>
+
+                        <div class="a22-grid">
+                            <div class="a22-grid-item">
+                                <img src="https://i.pinimg.com/474x/a4/0d/d1/a40dd1dc246b89dfed2c97b366cf36ee.jpg"
+                                    alt="nature collage">
+                                <div class="a22-item-overlay">
+                                    <h3>Earthy art</h3>
+                                    <h2>Nature-inspired collages</h2>
+                                </div>
+                            </div>
+
+                            <div class="a22-grid-item">
+                                <img src="https://i.pinimg.com/474x/a6/77/9f/a6779fdbe0c3466cfad6196a3cc98c7d.jpg"
+                                    alt="wedding photo">
+                                <div class="a22-item-overlay">
+                                    <h3>Precious moments</h3>
+                                    <h2>Dreamy wedding shots</h2>
+                                </div>
+                            </div>
+                            <div class="a22-grid-item">
+                                <img src="https://i.pinimg.com/474x/04/5f/43/045f437744f3ea385d5d7c3738922003.jpg"
+                                    alt="serene scene">
+                                <div class="a22-item-overlay">
+                                    <h3>Step into serenity</h3>
+                                    <h2>Most calming visuals</h2>
+                                </div>
+                            </div>
+
+                            <div class="a22-grid-item a22-quote-card">
+                                <img src="https://i.pinimg.com/736x/e6/42/c8/e642c8b2f93f1f0064e7b907e0c9c642.jpg"
+                                    alt="gradient background">
+                                <div class="a22-item-overlay">
+                                    <h3>You got this</h3>
+                                    <h2>Quotes for all the positive vibes</h2>
+                                </div>
+                                <div class="a22-quote-text">
+                                    I RADIATE<br>GODDESS ENERGY
+                                </div>
+                            </div>
+
+                            <div class="a22-grid-item">
+                                <img src="	https://i.pinimg.com/736x/2b/ee/8c/2bee8c0d3e2d9dccf653c4310d21ff0e.jpg"
+                                    alt="garden">
+                                <div class="a22-item-overlay">
+                                    <h3>Al fresco ideas</h3>
+                                    <h2>Balcony garden inspiration</h2>
+                                </div>
+                            </div>
+
+                            <div class="a22-grid-item">
+                                <img src="	https://i.pinimg.com/736x/d8/7a/65/d87a65ff913c6745f62321eaef292d83.jpg"
+                                    alt="person lying on grass">
+                                <div class="a22-item-overlay">
+                                    <h3>Astro aesthetics</h3>
+                                    <h2>It's time for Taurus season</h2>
+                                </div>
+                            </div>
+
+                            <div class="a22-grid-item">
+                                <img src="https://i.pinimg.com/474x/3c/bb/78/3cbb78099cbbea5d685676b2b65ad70a.jpg"
+                                    alt="nails design">
+                                <div class="a22-item-overlay">
+                                    <h3>Grounded glam</h3>
+                                    <h2>Earth tone nails</h2>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="a22-feed-footer">
+                            <div class="a22-checkmark">
+                                <i class="fas fa-check" style="color: white;"></i>
+                            </div>
+                            <p>That's all for today!</p>
+                            <p>Come back tomorrow for more inspiration</p>
+                            <a href="#" class="a22-action-btn">Go to home feed</a>
+                        </div>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;
+
                 </div>
-
-
             </div>
         </div>
 
 
         <div class="mobile-tabs">
             <div class="tab-items">
-                <div class="tab-item active">
+                <div onclick="window.location.href='/FinalPage'" class="tab-item active">
                     <i class="fas fa-home"></i>
                     <span>Home</span>
                 </div>
@@ -475,7 +590,7 @@
                     <i class="fas fa-search"></i>
                     <span>Search</span>
                 </div>
-                <div class="tab-item">
+                <div onclick="window.location.href='/post'" class="tab-item">
                     <i class="fas fa-plus"></i>
                     <span>Create</span>
                 </div>
@@ -483,7 +598,7 @@
                     <i class="fas fa-comment-dots"></i>
                     <span>Messages</span>
                 </div>
-                <div class="tab-item">
+                <div onclick="window.location.href='/account'" class="tab-item">
                     <i class="fas fa-user"></i>
                     <span>Profile</span>
                 </div>
@@ -491,7 +606,25 @@
         </div>
     </div>
 
+
+
     <script>
+        //   hodeNotification
+        let DomNone = document.getElementById("DomNone")
+        let NontficationOn = document.getElementById('NontficationOn')
+        let OnopenNotification = document.getElementById('OnopenNotification')
+        let OnopenOnhome = document.getElementById('OnopenOnhome')
+        OnopenNotification.onclick = () => {
+            DomNone.style.display = "none"
+            NontficationOn.style.display = "block"
+        }
+        OnopenOnhome.onclick = () => {
+            DomNone.style.display = "block"
+            NontficationOn.style.display = "none"
+
+        }
+
+
         const profileMenuBtn = document.getElementById('profileMenuBtn');
         const profileDropdown = document.getElementById('profileDropdown');
 

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/Dashboard.css">
+    <title>Pinterest - Your saved ideas</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1 class="page-title">Your saved ideas</h1>
+            <div  class="profile">
+                <div class="profile-img"></div>
+                <div class="profile-info">
+                    <div class="profile-name">Rajput Sr</div>
+                    <div class="profile-following">0 following</div>
+                </div>
+                <button onclick="window.location.href='/account'" class="view-profile-btn">View profile</button>
+            </div>
+        </header>
+
+        <div class="tabs">
+            <div class="tab active" data-tab="pins">Pins</div>
+            <div class="tab" data-tab="boards">Boards</div>
+            <button class="sort-btn">
+                <svg class="sort-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" y1="12" x2="20" y2="12"></line>
+                    <line x1="4" y1="6" x2="12" y2="6"></line>
+                    <line x1="4" y1="18" x2="16" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <div class="content-section active" id="pins-content">
+            <div class="empty-state" id="pins-empty-state">
+                <svg class="lightbulb-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="35" fill="none" stroke="#111" stroke-width="2"></circle>
+                    <path
+                        d="M50 25 C 35 25, 30 40, 35 55 C 36 58, 38 61, 38 65 L 62 65 C 62 61, 64 58, 65 55 C 70 40, 65 25, 50 25"
+                        fill="none" stroke="#111" stroke-width="2"></path>
+                    <path d="M42 65 L42 75 L58 75 L58 65" fill="none" stroke="#111" stroke-width="2"></path>
+                    <line x1="42" y1="70" x2="58" y2="70" stroke="#111" stroke-width="2"></line>
+                    <line x1="46" y1="80" x2="54" y2="80" stroke="#111" stroke-width="2"></line>
+                    <path d="M45,40 C47,38 53,38 55,40" fill="none" stroke="#111" stroke-width="1"></path>
+                    <circle cx="45" cy="35" r="1" fill="#111"></circle>
+                    <circle cx="55" cy="35" r="1" fill="#111"></circle>
+                </svg>
+                <h2 class="empty-state-title">You haven't saved any Pins... yet</h2>
+                <p class="empty-state-text">Save your favorite ideas so you can easily come back to them later</p>
+                <button class="explore-btn">Explore Pins</button>
+            </div>
+
+            <div class="pin-grid" id="pins-grid" style="display: none;">
+                <div class="pin-item">
+                    <img src="/api/placeholder/200/300" alt="Home decor idea">
+                    <div class="pin-title">Modern Living Room Design</div>
+                </div>
+                <div class="pin-item">
+                    <img src="/api/placeholder/200/400" alt="Recipe idea">
+                    <div class="pin-title">Healthy Breakfast Ideas</div>
+                </div>
+                <div class="pin-item">
+                    <img src="/api/placeholder/200/250" alt="Fashion idea">
+                    <div class="pin-title">Summer Fashion Trends</div>
+                </div>
+                <div class="pin-item">
+                    <img src="/api/placeholder/200/350" alt="DIY project">
+                    <div class="pin-title">DIY Home Organization</div>
+                </div>
+                <div class="pin-item">
+                    <img src="/api/placeholder/200/280" alt="Travel destination">
+                    <div class="pin-title">Must-Visit Places in Europe</div>
+                </div>
+                <div class="pin-item">
+                    <img src="/api/placeholder/200/320" alt="Fitness tip">
+                    <div class="pin-title">15-Minute Workout Routines</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section" id="boards-content">
+            <div class="empty-state" id="boards-empty-state">
+                <svg class="lightbulb-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="35" fill="none" stroke="#111" stroke-width="2"></circle>
+                    <path
+                        d="M50 25 C 35 25, 30 40, 35 55 C 36 58, 38 61, 38 65 L 62 65 C 62 61, 64 58, 65 55 C 70 40, 65 25, 50 25"
+                        fill="none" stroke="#111" stroke-width="2"></path>
+                    <path d="M42 65 L42 75 L58 75 L58 65" fill="none" stroke="#111" stroke-width="2"></path>
+                    <line x1="42" y1="70" x2="58" y2="70" stroke="#111" stroke-width="2"></line>
+                    <line x1="46" y1="80" x2="54" y2="80" stroke="#111" stroke-width="2"></line>
+                    <path d="M45,40 C47,38 53,38 55,40" fill="none" stroke="#111" stroke-width="1"></path>
+                    <circle cx="45" cy="35" r="1" fill="#111"></circle>
+                    <circle cx="55" cy="35" r="1" fill="#111"></circle>
+                </svg>
+                <h2 class="empty-state-title">You haven't created any Boards... yet</h2>
+                <p class="empty-state-text">Organize your ideas into Boards to keep track of different projects and
+                    interests</p>
+                <button class="explore-btn">Create Board</button>
+            </div>
+
+            <div class="board-grid" id="boards-grid" style="display: none;">
+                <div class="board-item">
+                    <div class="board-cover">
+                        <div class="board-cover-main"></div>
+                        <div class="board-cover-sub"></div>
+                        <div class="board-cover-sub"></div>
+                    </div>
+                    <div class="board-info">
+                        <div class="board-title">Home Decor Ideas</div>
+                        <div class="board-stats">24 pins</div>
+                    </div>
+                </div>
+                <div class="board-item">
+                    <div class="board-cover">
+                        <div class="board-cover-main"></div>
+                        <div class="board-cover-sub"></div>
+                        <div class="board-cover-sub"></div>
+                    </div>
+                    <div class="board-info">
+                        <div class="board-title">Healthy Recipes</div>
+                        <div class="board-stats">16 pins</div>
+                    </div>
+                </div>
+                <div class="board-item">
+                    <div class="board-cover">
+                        <div class="board-cover-main"></div>
+                        <div class="board-cover-sub"></div>
+                        <div class="board-cover-sub"></div>
+                    </div>
+                    <div class="board-info">
+                        <div class="board-title">Travel Bucket List</div>
+                        <div class="board-stats">32 pins</div>
+                    </div>
+                </div>
+                <div class="board-item">
+                    <div class="board-cover">
+                        <div class="board-cover-main"></div>
+                        <div class="board-cover-sub"></div>
+                        <div class="board-cover-sub"></div>
+                    </div>
+                    <div class="board-info">
+                        <div class="board-title">Workout & Fitness</div>
+                        <div class="board-stats">18 pins</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="create-btn" id="createBtn">+
+        <div class="create-menu" id="createMenu" style="display: none;">
+            <div class="create-menu-item">Create</div>
+            <div class="create-menu-item">Pin</div>
+        </div>
+    </div>
+
+    <script>
+        const createBtn = document.getElementById('createBtn');
+        const createMenu = document.getElementById('createMenu');
+
+        createBtn.addEventListener('click', () => {
+            const isDisplayed = createMenu.style.display === 'block';
+            createMenu.style.display = isDisplayed ? 'none' : 'block';
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!createBtn.contains(event.target)) {
+                createMenu.style.display = 'none';
+            }
+        });
+
+        const tabs = document.querySelectorAll('.tab');
+        const contentSections = document.querySelectorAll('.content-section');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+
+                tab.classList.add('active');
+
+                contentSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+
+
+                const targetId = tab.getAttribute('data-tab') + '-content';
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        const exploreButtons = document.querySelectorAll('.explore-btn');
+
+        exploreButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const parentSection = button.closest('.content-section');
+                const emptyState = parentSection.querySelector('.empty-state');
+                const contentGrid = parentSection.querySelector('.pin-grid, .board-grid');
+
+                if (emptyState && contentGrid) {
+                    emptyState.style.display = 'none';
+                    contentGrid.style.display = 'grid';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

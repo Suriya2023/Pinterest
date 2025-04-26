@@ -1,0 +1,308 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+  background-color: #fff;
+  color: #111;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.page-title {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #eee;
+  overflow: hidden;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-name {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.profile-following {
+  color: #767676;
+  font-size: 14px;
+}
+
+.view-profile-btn {
+  background-color: #e9e9e9;
+  border: none;
+  border-radius: 24px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #e9e9e9;
+  margin-bottom: 30px;
+}
+
+.tab {
+  padding: 12px 8px;
+  margin-right: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+}
+
+.tab.active {
+  color: #111;
+}
+
+.tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #111;
+}
+
+.sort-btn {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.sort-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.content-section {
+  display: none; /* Hide by default */
+}
+
+.content-section.active {
+  display: block; /* Show when active */
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.lightbulb-icon {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.empty-state-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.empty-state-text {
+  color: #111;
+  margin-bottom: 20px;
+  max-width: 300px;
+}
+
+.explore-btn {
+  background-color: #e60023;
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 12px 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.create-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  background-color: #111;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  cursor: pointer;
+  z-index: 10;
+}
+
+.create-menu {
+  position: absolute;
+  bottom: 80px;
+  right: 0;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  overflow: hidden;
+  width: 180px;
+}
+
+.create-menu-item {
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+.create-menu-item:hover {
+  background-color: #f5f5f5;
+}
+
+/* Pin grid styles */
+.pin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.pin-item {
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.pin-item img {
+  width: 100%;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.pin-item:hover img {
+  transform: scale(1.05);
+}
+
+.pin-title {
+  padding: 8px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* Board grid styles */
+.board-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.board-item {
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.board-cover {
+  height: 150px;
+  background-color: #f0f0f0;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 2px;
+}
+
+.board-cover-main {
+  grid-row: span 2;
+  background-color: #e0e0e0;
+}
+
+.board-cover-sub {
+  background-color: #d8d8d8;
+}
+
+.board-info {
+  padding: 12px;
+}
+
+.board-title {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.board-stats {
+  color: #767676;
+  font-size: 12px;
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 24px;
+  }
+  
+  .profile-img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .pin-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+  
+  .board-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 15px;
+  }
+  
+  .page-title {
+    font-size: 20px;
+  }
+  
+  .view-profile-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  
+  .pin-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+  
+  .board-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
