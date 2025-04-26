@@ -197,14 +197,28 @@ textarea.a1-form-control {
   margin-left: 8px;
 }
 
+.MyClassbackkBtn {
+  display: none;
+  float: right;
+}
+
 @media (max-width: 768px) {
+  .DevEdit {
+    flex-direction: column-reverse;
+  }
+
   body {
     flex-direction: column;
+  }
+
+  .MyClassbackkBtn {
+    display: block;
   }
 
   .a1-sidebar {
     width: 100%;
     border-right: none;
+    flex-direction: column;
     border-bottom: 1px solid #e9e9e9;
     padding: 20px;
     overflow-x: auto;
