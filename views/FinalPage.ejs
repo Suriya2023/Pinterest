@@ -45,9 +45,14 @@
                         class="search-input" placeholder="Search"> </div>
                 <div class="profile">
                     <div class="profile-menu">
-                        <div class="profile-icon" id="profileMenuBtn">
-                            <%=fullname.charAt(0)%>
+                        <div onclick="document.getElementById('dot').style.display === 'none' ? document.getElementById('dot').style.display = 'block' : document.getElementById('dot').style.display = 'none'"
+                            class="profile-icon" id="profileMenuBtn">
+                            <!-- <%=fullname.charAt(0)%> -->
+                            <img class="top-icone"
+                                src="https://i.pinimg.com/75x75_RS/06/55/e7/0655e784b7bab337285e3f1ac1711e05.jpg"
+                                alt="">
                         </div>
+                        <!-- <button id="dot" style="display: none;">Hellow</button> -->
                         <div class="dropdown-menu" id="profileDropdown">
                             <div onclick="window.location.href='/Dashboard'"
                                 style="cursor: pointer;display: flex;align-items: center;border: 2px solid;justify-content: space-between;"
@@ -63,7 +68,9 @@
                             </div>
                             <div class="dropdown-item">Connect to business</div>
                             <div class="dropdown-item">Add Pinterest account</div>
-                            <div onclick="window.location.href='/'" class="dropdown-item">Log out</div>
+                            <a href="/logout">
+                                <div type="submit" class="dropdown-item">Log out</div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -604,6 +611,10 @@
                 </div>
             </div>
         </div>
+
+
+
+      
     </div>
 
 

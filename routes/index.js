@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 let lacalStrategy = require('passport-local')
 let passport = require('passport')
+let upload = require('./multer')
+let postModl = require('./posts')
 let userModel = require('./users')
 passport.use(new lacalStrategy(userModel.authenticate()))
 
@@ -65,7 +67,7 @@ router.get('/post', function (req, res) {
   res.render('post')
 })
 
-router.get('/Dashboard', async function (req, res) {
+router.get('/Dashboard', isLoggedIn, async function (req, res) {
   const user = await userModel.findOne({
     username: req.session.passport.user
   })
@@ -83,6 +85,8 @@ router.get("/RegisterUs", function (req, res) {
 })
 
 
+
+
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next()
@@ -91,4 +95,23 @@ function isLoggedIn(req, res, next) {
 
 
 }
+//logout section
+router.get('/logout', function (req, res) {
+  req.logOut(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/loginus')
+  })
+})
+
+
+
+
+router.post('/upload', upload.single('file'), function (req, res) {
+  if (!req.file) {
+    return res.status(400).send("No files were uploaded");
+  }
+  res.send("File uploaded successfully");
+});
 module.exports = router;

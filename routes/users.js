@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose')
-const plm = require("passport-local-mongoose")
+const plm = require("passport-local-mongoose");
+const posts = require('./posts');
 mongoose.connect("mongodb://127.0.0.1:27017/pinterest")
 
 /* GET users listing. */
@@ -21,7 +22,11 @@ let userName = mongoose.Schema({
   fullname: {
     type: String,
     require: true,
-  }
+  },
+  posts: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'post'
+  }]
 
 })
 userName.plugin(plm);
