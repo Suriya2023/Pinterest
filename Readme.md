@@ -16,3 +16,4 @@ Require Package:
     - passport 
     - passport-local
     - passport-local-mongoose
+    - connect-flash

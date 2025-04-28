@@ -16,6 +16,11 @@ let userName = mongoose.Schema({
 
   email: {
     type: String,
+    require: true,
+  },
+  fullname: {
+    type: String,
+    require: true,
   }
 
 })

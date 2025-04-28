@@ -10,23 +10,21 @@ router.get('/', function (req, res) {
   res.render('index');
 });
 // create a route for registerUs and Loginus
-router.get("/FinalPage", isLoggedIn, function (req, res) {
-  res.render('FinalPage')
+router.get("/FinalPage", isLoggedIn, async function (req, res) {
+  const user = await userModel.findOne({
+    username: req.session.passport.user,
+  })
+  console.log("user", user);
+  res.render('FinalPage', { username: user.username, fullname: user.fullname, email: user.email })
 })
 
-router.get("/loginus", function (req, res) {
-  res.render("login")
-})
 
-
-router.get("/RegisterUs", function (req, res) {
-  res.render("Register")
-})
 
 router.post("/register", function (req, res) {
   let userData = new userModel({
     username: req.body.username,
-    email: req.body.email
+    email: req.body.email,
+    fullname: req.body.fullname,
   })
   userModel.register(userData, req.body.password).then(function (registeruser) {
     passport.authenticate('local')(req, res, function () {
@@ -37,7 +35,9 @@ router.post("/register", function (req, res) {
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: "/FinalPage",
-  failureRedirect: "/"
+  failureRedirect: "/loginus",
+  failureFlash: true,
+
 }), function (req, res) { })
 
 // router.get('/profile', isLoggedIn, function (req, res) {
@@ -45,23 +45,42 @@ router.post('/login', passport.authenticate('local', {
 
 // })
 
-router.get('/account',function(req,res){
-  res.render('account')
+router.get('/account', async function (req, res) {
+  const user = await userModel.findOne({
+    username: req.session.passport.user, //save username background 
+  })
+  res.render('account', { username: user.username, fullname: user.fullname })
 })
 
-router.get('/edditPf',function(req,res){
-  res.render('edditPf')
+
+
+router.get('/edditPf', async function (req, res) {
+  const user = await userModel.findOne({
+    username: req.session.passport.user
+  })
+  res.render('edditPf', { username: user.username, fullname: user.fullname })
 })
 
-router.get('/post',function(req,res){
+router.get('/post', function (req, res) {
   res.render('post')
 })
 
-router.get('/Dashboard',function(req,res){
-  res.render('Dashboard')
+router.get('/Dashboard', async function (req, res) {
+  const user = await userModel.findOne({
+    username: req.session.passport.user
+  })
+  res.render('Dashboard', { username: user.username, fullname: user.fullname })
+})
+
+router.get("/loginus", function (req, res) {
+  res.render("login", { error: req.flash('error') });
+  console.log(req.flash('error'));
 })
 
 
+router.get("/RegisterUs", function (req, res) {
+  res.render("Register")
+})
 
 
 function isLoggedIn(req, res, next) {
@@ -69,6 +88,7 @@ function isLoggedIn(req, res, next) {
     return next()
 
   } res.redirect('/')
+
 
 }
 module.exports = router;
