@@ -13,9 +13,9 @@
     <div class="container">
         <header>
             <h1 class="page-title">Your saved ideas</h1>
-            <div class="profile">
+            <div onclick="window.location.href='/account'"  class="profile">
                 <div class="profile-img"></div>
-                <div class="profile-info">
+                <div  class="profile-info">
                     <div class="profile-name">
                         <%=fullname%>
                     </div>
@@ -156,8 +156,8 @@
 
     <div class="create-btn" id="createBtn">+
         <div class="create-menu" id="createMenu" style="display: none;">
-            <div class="create-menu-item">Create</div>
-            <div class="create-menu-item">Pin</div>
+            <div onclick="window.location.href='/post'" class="create-menu-item">Create</div>
+            <div onclick="window.location.href='/Dashboard'" class="create-menu-item">Pin</div>
         </div>
     </div>
 

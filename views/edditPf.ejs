@@ -6,9 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/stylesheets/eddit.css">
   <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" type="image/x-icon">
-
   <title>Edit Profile - Pinterest</title>
-
 </head>
 
 <body>
@@ -16,7 +14,6 @@
     <div class="a1-sidebar">
       <div>
         <button onclick="window.location.href='/account'" class="back-button">&#10094;&#10094;</button>
-
       </div>
       <div class="a1-sidebar-item a1-active">Edit profile</div>
       <div class="a1-sidebar-item">Account management</div>
@@ -33,20 +30,19 @@
     <div class="a1-main-content">
       <div class="MyClassbackkBtn">
         <button onclick="window.location.href='/account '" class="back-button">&#10094;&#10094;</button>
-
       </div>
       <h1>Edit profile</h1>
       <p class="a1-description">Keep your personal details private. Information you add here is visible to anyone who
-        can
-        view your profile.</p>
+        can view your profile.</p>
 
       <div class="a1-form-section">
         <div class="a1-form-label">Photo</div>
         <div class="a1-profile-photo">
           <div class="a1-photo-container">
-            <img src="/api/placeholder/80/80" alt="Profile picture" />
+            <img id="profileImage" src="/api/placeholder/80/80" alt="Profile picture" />
           </div>
-          <button class="a1-change-btn">Change</button>
+          <input type="file" id="profileImageInput" style="display: none;" accept="image/*" />
+          <button class="a1-change-btn" onclick="document.getElementById('profileImageInput').click();">Change</button>
         </div>
       </div>
 
@@ -86,8 +82,6 @@
         <button class="a1-btn a1-btn-save" id="a1-save-btn">Save</button>
         <button class="a1-btn a1-btn-save" id="a1-edit-btn" style="display: none;">Edit</button>
       </div>
-
-
     </div>
 
     <script>
@@ -104,6 +98,7 @@
         document.querySelectorAll('input.a1-form-control, textarea.a1-form-control').forEach(el => el.disabled = true);
         const dropdownToggle = document.querySelector('.a1-dropdown-toggle');
         if (dropdownToggle) dropdownToggle.disabled = true;
+        document.getElementById('profileImageInput').disabled = true;
       });
 
       resetBtn.addEventListener('click', function () {
@@ -114,6 +109,7 @@
         document.querySelectorAll('input.a1-form-control, textarea.a1-form-control').forEach(el => el.disabled = false);
         const dropdownToggle = document.querySelector('.a1-dropdown-toggle');
         if (dropdownToggle) dropdownToggle.disabled = false;
+        document.getElementById('profileImageInput').disabled = false;
 
         saveBtn.style.display = 'inline-block';
         resetBtn.style.display = 'inline-block';
@@ -126,9 +122,23 @@
           this.classList.add('a1-active');
         });
       });
+
+      // Profile image preview logic
+      const profileInput = document.getElementById('profileImageInput');
+      const profileImg = document.getElementById('profileImage');
+
+      profileInput.addEventListener('change', function () {
+        const file = this.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            profileImg.src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
     </script>
   </div>
 </body>
-
 
 </html>
