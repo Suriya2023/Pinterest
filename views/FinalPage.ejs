@@ -77,16 +77,19 @@
                 </div>
             </div>
 
-            <div id="DomNone" class="content-area mx-auto max-w-screen-xl px-4 md:px-8">
-                <div class="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+            <div id="DomNone" class="content-area mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+                <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
                     <% posts.forEach(function(elem) { %>
-                        <div class="break-inside-avoid shadow-md rounded-xl overflow-hidden bg-white">
+                        <div
+                            class="break-inside-avoid shadow-md rounded-xl overflow-hidden bg-white transition-all duration-300 hover:scale-[1.03] hover:shadow-xl">
+
                             <!-- Post Image -->
                             <img src="/images/uploads/<%= elem.images %>" alt="Post Image"
-                                class="w-full object-cover rounded-t-xl">
+                                class="w-full h-auto object-cover rounded-t-xl">
 
                             <!-- User Info -->
                             <div class="p-3 flex items-start gap-3">
+
                                 <!-- Profile Image -->
                                 <div class="w-10 h-10 rounded-full overflow-hidden border">
                                     <img src="/images/uploads/<%= elem.user.profileimage %>" alt="Profile Image"
@@ -110,18 +113,18 @@
                         <% }) %>
                 </div>
             </div>
+<style>
+  /* If you're not relying fully on Tailwind transitions */
+  .break-inside-avoid {
+    transition: all 0.3s ease-in-out;
+  }
 
-            <style>
-                /* Smooth card transitions */
-                .break-inside-avoid {
-                    transition: all 0.3s ease;
-                }
+  .break-inside-avoid:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+</style>
 
-                .break-inside-avoid:hover {
-                    transform: scale(1.03);
-                    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-                }
-            </style>
 
 
 
@@ -331,31 +334,88 @@
 
         </div>
 
-
-        <div class="mobile-tabs">
-            <div class="tab-items">
-                <div onclick="window.location.href='/FinalPage'" class="tab-item active">
-                    <i class="fas fa-home"></i>
+        <div class="mobile-tabs" style="
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  padding: 6px 0;
+">
+            <div class="tab-items" style="
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  ">
+                <div onclick="window.location.href='/FinalPage'" class="tab-item active" style="
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: red;
+      font-size: 12px;
+      padding: 6px;
+      cursor: pointer;
+    ">
+                    <i class="fas fa-home" style="font-size: 18px;"></i>
                     <span>Home</span>
                 </div>
-                <div class="tab-item">
-                    <i class="fas fa-search"></i>
+
+                <div class="tab-item" style="
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #555;
+      font-size: 12px;
+      padding: 6px;
+      cursor: pointer;
+    ">
+                    <i class="fas fa-search" style="font-size: 18px;"></i>
                     <span>Search</span>
                 </div>
-                <div onclick="window.location.href='/post'" class="tab-item">
-                    <i class="fas fa-plus"></i>
+
+                <div onclick="window.location.href='/uploadpost'" class="tab-item" style="
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #555;
+      font-size: 12px;
+      padding: 6px;
+      cursor: pointer;
+    ">
+                    <i class="fas fa-plus" style="font-size: 18px;"></i>
                     <span>Create</span>
                 </div>
-                <div class="tab-item">
-                    <i class="fas fa-comment-dots"></i>
+
+                <div class="tab-item" style="
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #555;
+      font-size: 12px;
+      padding: 6px;
+      cursor: pointer;
+    ">
+                    <i class="fas fa-comment-dots" style="font-size: 18px;"></i>
                     <span>Messages</span>
                 </div>
-                <div onclick="window.location.href='/account'" class="tab-item">
-                    <i class="fas fa-user"></i>
+
+                <div onclick="window.location.href='/account'" class="tab-item" style="
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #555;
+      font-size: 12px;
+      padding: 6px;
+      cursor: pointer;
+    ">
+                    <i class="fas fa-user" style="font-size: 18px;"></i>
                     <span>Profile</span>
                 </div>
             </div>
         </div>
+
 
 
 
