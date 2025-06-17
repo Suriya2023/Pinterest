@@ -16,14 +16,14 @@ router.get('/', (req, res) => {
 
 /* Register a user */
 router.post("/register", async (req, res) => {
-  const userData = new userModel({
+  const userData = new User({
     username: req.body.username,
     email: req.body.email,
     fullname: req.body.fullname,
     posts: [],
   });
 
-  userModel.register(userData, req.body.password).then((registeredUser) => {
+  User.register(userData, req.body.password).then((registeredUser) => {
     passport.authenticate('local')(req, res, () => {
       res.redirect('/FinalPage');
     });
@@ -39,26 +39,26 @@ router.post('/login', passport.authenticate('local', {
 
 /* FinalPage - all posts */
 router.get("/FinalPage", isLoggedIn, async (req, res) => {
-  const user = await userModel.findOne({ username: req.session.passport.user });
+  const user = await User.findOne({ username: req.session.passport.user });
   const posts = await postModel.find().populate('user');
   res.render('FinalPage', { user, posts });
 });
 
 /* Account - show user's posts */
 router.get('/account', isLoggedIn, async (req, res) => {
-  const user = await userModel.findOne({ username: req.session.passport.user }).populate('posts');
+  const user = await User.findOne({ username: req.session.passport.user }).populate('posts');
   res.render('account', { user });
 });
 
 /* Edit profile page */
 router.get('/edditPf', isLoggedIn, async (req, res) => {
-  const user = await userModel.findOne({ username: req.session.passport.user });
+  const user = await User.findOne({ username: req.session.passport.user });
   res.render('edditPf', { user });
 });
 
 /* Profile image upload */
 router.post('/profileimage', isLoggedIn, upload.single('dp'), async (req, res) => {
-  const user = await userModel.findOne({ username: req.session.passport.user });
+  const user = await User.findOne({ username: req.session.passport.user });
   user.profileimage = req.file.filename;
   await user.save();
   res.redirect('/account');
@@ -71,7 +71,7 @@ router.get('/uploadpost', isLoggedIn, (req, res) => {
 
 /* Add new post */
 router.post('/addpost', isLoggedIn, upload.single('post'), async (req, res) => {
-  const user = await userModel.findOne({ username: req.session.passport.user });
+  const user = await User.findOne({ username: req.session.passport.user });
 
   const newPost = await postModel.create({
     images: req.file.filename,
@@ -87,13 +87,13 @@ router.post('/addpost', isLoggedIn, upload.single('post'), async (req, res) => {
 
 /* All user's posts */
 router.get('/allpost', isLoggedIn, async (req, res) => {
-  const user = await userModel.findOne({ username: req.session.passport.user }).populate('posts');
+  const user = await User.findOne({ username: req.session.passport.user }).populate('posts');
   res.render('allpost', { user });
 });
 
 /* Dashboard */
 router.get('/Dashboard', isLoggedIn, async (req, res) => {
-  const user = await userModel.findOne({ username: req.session.passport.user });
+  const user = await User.findOne({ username: req.session.passport.user });
   res.render('Dashboard', { user });
 });
 
@@ -107,7 +107,7 @@ router.get("/RegisterUs", (req, res) => {
 });
 router.post('/updateprofile', isLoggedIn, upload.single('dp'), async (req, res, next) => {
   try {
-    const user = await userModel.findOne({ username: req.session.passport.user });
+    const user = await User.findOne({ username: req.session.passport.user });
 
     user.fullname = req.body.fullname;
     user.username = req.body.username;
