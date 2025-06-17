@@ -76,20 +76,16 @@
                     </div>
                 </div>
             </div>
-
-            <div id="DomNone" class="content-area mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-                <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+   <div id="DomNone" class="content-area mx-auto max-w-screen-xl px-4 md:px-8">
+                <div class="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
                     <% posts.forEach(function(elem) { %>
-                        <div
-                            class="break-inside-avoid shadow-md rounded-xl overflow-hidden bg-white transition-all duration-300 hover:scale-[1.03] hover:shadow-xl">
-
+                        <div class="break-inside-avoid shadow-md rounded-xl overflow-hidden bg-white">
                             <!-- Post Image -->
                             <img src="/images/uploads/<%= elem.images %>" alt="Post Image"
-                                class="w-full h-auto object-cover rounded-t-xl">
+                                class="w-full object-cover rounded-t-xl">
 
                             <!-- User Info -->
                             <div class="p-3 flex items-start gap-3">
-
                                 <!-- Profile Image -->
                                 <div class="w-10 h-10 rounded-full overflow-hidden border">
                                     <img src="/images/uploads/<%= elem.user.profileimage %>" alt="Profile Image"
@@ -113,17 +109,19 @@
                         <% }) %>
                 </div>
             </div>
-<style>
-  /* If you're not relying fully on Tailwind transitions */
-  .break-inside-avoid {
-    transition: all 0.3s ease-in-out;
-  }
 
-  .break-inside-avoid:hover {
-    transform: scale(1.03);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  }
-</style>
+            <style>
+                /* Smooth card transitions */
+                .break-inside-avoid {
+                    transition: all 0.3s ease;
+                }
+
+                .break-inside-avoid:hover {
+                    transform: scale(1.03);
+                    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                }
+            </style>
+
 
 
 

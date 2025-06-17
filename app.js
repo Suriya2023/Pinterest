@@ -8,7 +8,7 @@ const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
 const dotenv = require('dotenv');
-
+const MongoStore = require('connect-mongo');
 // Load env
 dotenv.config();
 
@@ -45,16 +45,20 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // for mul
 
 // Session & Passport
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'PinterestSecretKey',
+  secret: 'your-secret-key',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URI,
+    collectionName: 'sessions'
+  })
 }));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
 // Flash Messages Middleware
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
