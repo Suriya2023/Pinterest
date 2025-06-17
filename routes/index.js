@@ -4,10 +4,10 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const upload = require('./multer');
 const postModel = require('./posts');
-const userModel = require('./users');
+const { User } = require('./users'); // ✅ Correct destructure
 
 // Passport strategy setup
-passport.use(new LocalStrategy(userModel.authenticate()));
+passport.use(new LocalStrategy(User.authenticate())); // ✅ Will now work
 
 /* Home page */
 router.get('/', (req, res) => {

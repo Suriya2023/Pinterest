@@ -1,62 +1,81 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-let session = require('express-session')
-let passport = require('passport')
-let flash = require('connect-flash')
+// Core Modules
+const express = require('express');
+const path = require('path');
+const mongoose = require('mongoose');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const passport = require('passport');
+const flash = require('connect-flash');
+const dotenv = require('dotenv');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// Load env
+dotenv.config();
 
-var app = express();
+// Routes and User Schema
+const indexRouter = require('./routes/index');
+const { router: usersRouter, User } = require('./routes/users'); // ✅ Destructure both route and schema
 
-// view engine setup
+// Init App
+const app = express();
+
+// MongoDB Connection
+mongoose.connect(process.env.MONGO_URI || 'your-mongo-uri')
+  .then(() => {
+    console.log('✅ MongoDB Connected');
+  })
+  .catch((err) => {
+    console.error('❌ MongoDB Error:', err);
+  });
+
+
+// View Engine Setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-
-// flash setup
-app.use(flash());
-
-
-app.use(session({
-  resave: false,
-  saveUninitialized: false,
-  secret: "Printerest"
-}))
-
-
-app.use(passport.initialize())
-app.use(passport.session())
-passport.serializeUser(usersRouter.serializeUser())
-passport.deserializeUser(usersRouter.deserializeUser())
-
-
+// Middleware Setup
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
+// Static Files
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // for multer uploads
+
+// Session & Passport
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'PinterestSecretKey',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Flash Messages Middleware
+app.use(function(req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.currentUser = req.user;
+  next();
+});
+
+// Passport Config using User model
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// Routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
+// 404 Error Handler
+app.use((req, res, next) => {
+  res.status(404).render('404', { title: '404 Not Found' });
 });
 
-// error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+// ❌ IMPORTANT: Do NOT use app.listen() here — it's handled in ./bin/www
 
 module.exports = app;
