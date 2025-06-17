@@ -76,70 +76,49 @@
                     </div>
                 </div>
             </div>
-      <div id="DomNone" class="content-area mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-  <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-    <% posts.forEach(function(elem) { %>
-      <div class="break-inside-avoid shadow-md rounded-xl overflow-hidden bg-white transition-transform duration-300 hover:scale-[1.03] hover:shadow-lg">
-        
-        <!-- Post Image -->
-        <img src="/images/uploads/<%= elem.images %>" alt="Post Image"
-          class="w-full h-auto object-cover rounded-t-xl">
+            <div id="DomNone" class="content-area mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+                <div class="columns-1  md:columns-3 lg:columns-4 gap-4 space-y-4">
+                    <% posts.forEach(function(elem) { %>
+                        <div
+                            class="break-inside-avoid shadow-md rounded-xl overflow-hidden bg-white transition-transform duration-300 hover:scale-[1.03] hover:shadow-lg">
 
-        <!-- User Info -->
-        <div class="p-3 flex items-start gap-3">
-          
-          <!-- Profile Image -->
-          <div class="w-10 h-10 rounded-full overflow-hidden border">
-            <img src="/images/uploads/<%= elem.user.profileimage %>" alt="Profile Image"
-              class="w-full h-full object-cover">
-          </div>
+                            <!-- Post Image -->
+                            <img src="/images/uploads/<%= elem.images %>" alt="Post Image"
+                                class="w-full h-auto object-cover rounded-t-xl">
 
-          <!-- Username and Info -->
-          <div class="text-left">
-            <h3 class="font-semibold text-sm text-gray-800">
-              <%= elem.user.username %>
-            </h3>
-            <p class="text-xs text-gray-500 truncate max-w-[10rem]">
-              <%= elem.title %>
-            </p>
-            <p class="text-xs text-gray-400">
-              Pins: <%= elem.user.posts.length %>
-            </p>
-          </div>
-        </div>
-      </div>
-    <% }) %>
-  </div>
-</div>
+                            <!-- User Info -->
+                            <div class="p-3 flex items-start gap-3">
+
+                                <!-- Profile Image -->
+                                <div class="w-10 h-10 rounded-full overflow-hidden border">
+                                    <img src="/images/uploads/<%= elem.user.profileimage %>" alt="Profile Image"
+                                        class="w-full h-full object-cover">
+                                </div>
+
+                                <!-- Username and Info -->
+                                <div class="text-left">
+                                    <h3 class="font-semibold text-sm text-gray-800">
+                                        <%= elem.user.username %>
+                                    </h3>
+                                    <p class="text-xs text-gray-500 truncate max-w-[10rem]">
+                                        <%= elem.title %>
+                                    </p>
+                                    <p class="text-xs text-gray-400">
+                                        Pins: <%= elem.user.posts.length %>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+            </div>
 
 
-            <style>
-                /* Smooth card transitions */
-                .break-inside-avoid {
-                    transition: all 0.3s ease;
-                }
 
-                .break-inside-avoid:hover {
-                    transform: scale(1.03);
-                    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-                }
-
-                
-            </style>  
 
         </div>
 
-        <style>
-            /* Smooth card transitions */
-            .break-inside-avoid {
-                transition: all 0.3s ease;
-            }
 
-            .break-inside-avoid:hover {
-                transform: scale(1.03);
-                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-            }
-        </style>
 
 
 
