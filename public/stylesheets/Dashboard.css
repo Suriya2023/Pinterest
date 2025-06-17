@@ -39,8 +39,13 @@ header {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #eee;
+  /* background: url('/images/uploads/<%= profileimage.profileimage %>'); */
   overflow: hidden;
+}
+.profile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .profile-info {
@@ -110,11 +115,13 @@ header {
 }
 
 .content-section {
-  display: none; /* Hide by default */
+  display: none;
+  /* Hide by default */
 }
 
 .content-section.active {
-  display: block; /* Show when active */
+  display: block;
+  /* Show when active */
 }
 
 .empty-state {
@@ -167,7 +174,7 @@ header {
   justify-content: center;
   color: white;
   font-size: 30px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   z-index: 10;
 }
@@ -178,7 +185,7 @@ header {
   right: 0;
   background-color: black;
   border-radius: 16px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   width: 180px;
 }
@@ -271,16 +278,16 @@ header {
   .page-title {
     font-size: 24px;
   }
-  
+
   .profile-img {
     width: 40px;
     height: 40px;
   }
-  
+
   .pin-grid {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   }
-  
+
   .board-grid {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
@@ -290,20 +297,20 @@ header {
   .container {
     padding: 15px;
   }
-  
+
   .page-title {
     font-size: 20px;
   }
-  
+
   .view-profile-btn {
     padding: 6px 10px;
     font-size: 12px;
   }
-  
+
   .pin-grid {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   }
-  
+
   .board-grid {
     grid-template-columns: 1fr 1fr;
   }

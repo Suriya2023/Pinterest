@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="w-full min-h-screen">
+        <!-- <% %>javascript run
+         <%= %>dynamic Values insert -- get vale from index.js -->
+
+
+        <div class=" flex flex gap-10 py-20 px-20">
+            <% user.posts.forEach(function(elem){ %>
+                <div class="w-32 card">
+                    <div class="w-32 h-40 pointer  border-4 rounded-lg overflow-hidden ">
+                        <img src="/images/uploads/<%= elem.images  %>" class="w-full h-full object-cover " alt="image">
+                    </div>
+                    <h5 class="text-md text-center">
+                        <%= elem.title %>
+                    </h5>
+                     
+                </div>
+                <% }) %>
+        </div>
+
+    </div>
+</body>
+
+</html>

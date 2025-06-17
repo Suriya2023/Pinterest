@@ -1,117 +1,148 @@
-var express = require('express');
-var router = express.Router();
-let lacalStrategy = require('passport-local')
-let passport = require('passport')
-let upload = require('./multer')
-let postModl = require('./posts')
-let userModel = require('./users')
-passport.use(new lacalStrategy(userModel.authenticate()))
+const express = require('express');
+const router = express.Router();
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const upload = require('./multer');
+const postModel = require('./posts');
+const userModel = require('./users');
 
-/* GET home page. */
-router.get('/', function (req, res) {
+// Passport strategy setup
+passport.use(new LocalStrategy(userModel.authenticate()));
+
+/* Home page */
+router.get('/', (req, res) => {
   res.render('index');
 });
-// create a route for registerUs and Loginus
-router.get("/FinalPage", isLoggedIn, async function (req, res) {
-  const user = await userModel.findOne({
-    username: req.session.passport.user,
-  })
-  console.log("user", user);
-  res.render('FinalPage', { username: user.username, fullname: user.fullname, email: user.email })
-})
 
-
-
-router.post("/register", function (req, res) {
-  let userData = new userModel({
+/* Register a user */
+router.post("/register", async (req, res) => {
+  const userData = new userModel({
     username: req.body.username,
     email: req.body.email,
     fullname: req.body.fullname,
-  })
-  userModel.register(userData, req.body.password).then(function (registeruser) {
-    passport.authenticate('local')(req, res, function () {
-      res.redirect('/FinalPage')
-    })
-  })
-})
+    posts: [],
+  });
 
+  userModel.register(userData, req.body.password).then((registeredUser) => {
+    passport.authenticate('local')(req, res, () => {
+      res.redirect('/FinalPage');
+    });
+  });
+});
+
+/* Login */
 router.post('/login', passport.authenticate('local', {
   successRedirect: "/FinalPage",
   failureRedirect: "/loginus",
   failureFlash: true,
+}));
 
-}), function (req, res) { })
-
-// router.get('/profile', isLoggedIn, function (req, res) {
-//   res.render('FinalPage')
-
-// })
-
-router.get('/account', async function (req, res) {
-  const user = await userModel.findOne({
-    username: req.session.passport.user, //save username background 
-  })
-  res.render('account', { username: user.username, fullname: user.fullname })
-})
-
-
-
-router.get('/edditPf', async function (req, res) {
-  const user = await userModel.findOne({
-    username: req.session.passport.user
-  })
-  res.render('edditPf', { username: user.username, fullname: user.fullname })
-})
-
-router.get('/post', function (req, res) {
-  res.render('post')
-})
-
-router.get('/Dashboard', isLoggedIn, async function (req, res) {
-  const user = await userModel.findOne({
-    username: req.session.passport.user
-  })
-  res.render('Dashboard', { username: user.username, fullname: user.fullname })
-})
-
-router.get("/loginus", function (req, res) {
-  res.render("login", { error: req.flash('error') });
-  console.log(req.flash('error'));
-})
-
-
-router.get("/RegisterUs", function (req, res) {
-  res.render("Register")
-})
-
-
-
-
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next()
-
-  } res.redirect('/')
-
-
-}
-//logout section
-router.get('/logout', function (req, res) {
-  req.logOut(function (err) {
-    if (err) {
-      return next(err);
-    }
-    res.redirect('/loginus')
-  })
-})
-
-
-
-
-router.post('/upload', upload.single('file'), function (req, res) {
-  if (!req.file) {
-    return res.status(400).send("No files were uploaded");
-  }
-  res.send("File uploaded successfully");
+/* FinalPage - all posts */
+router.get("/FinalPage", isLoggedIn, async (req, res) => {
+  const user = await userModel.findOne({ username: req.session.passport.user });
+  const posts = await postModel.find().populate('user');
+  res.render('FinalPage', { user, posts });
 });
+
+/* Account - show user's posts */
+router.get('/account', isLoggedIn, async (req, res) => {
+  const user = await userModel.findOne({ username: req.session.passport.user }).populate('posts');
+  res.render('account', { user });
+});
+
+/* Edit profile page */
+router.get('/edditPf', isLoggedIn, async (req, res) => {
+  const user = await userModel.findOne({ username: req.session.passport.user });
+  res.render('edditPf', { user });
+});
+
+/* Profile image upload */
+router.post('/profileimage', isLoggedIn, upload.single('dp'), async (req, res) => {
+  const user = await userModel.findOne({ username: req.session.passport.user });
+  user.profileimage = req.file.filename;
+  await user.save();
+  res.redirect('/account');
+});
+
+/* Upload post page */
+router.get('/uploadpost', isLoggedIn, (req, res) => {
+  res.render('upload');
+});
+
+/* Add new post */
+router.post('/addpost', isLoggedIn, upload.single('post'), async (req, res) => {
+  const user = await userModel.findOne({ username: req.session.passport.user });
+
+  const newPost = await postModel.create({
+    images: req.file.filename,
+    posttext: req.body.posttext,
+    title: req.body.title,
+    user: user._id
+  });
+
+  user.posts.push(newPost._id);
+  await user.save();
+  res.redirect('/account');
+});
+
+/* All user's posts */
+router.get('/allpost', isLoggedIn, async (req, res) => {
+  const user = await userModel.findOne({ username: req.session.passport.user }).populate('posts');
+  res.render('allpost', { user });
+});
+
+/* Dashboard */
+router.get('/Dashboard', isLoggedIn, async (req, res) => {
+  const user = await userModel.findOne({ username: req.session.passport.user });
+  res.render('Dashboard', { user });
+});
+
+/* Login and Register pages */
+router.get("/loginus", (req, res) => {
+  res.render("login", { error: req.flash('error') });
+});
+
+router.get("/RegisterUs", (req, res) => {
+  res.render("Register");
+});
+router.post('/updateprofile', isLoggedIn, upload.single('dp'), async (req, res, next) => {
+  try {
+    const user = await userModel.findOne({ username: req.session.passport.user });
+
+    user.fullname = req.body.fullname;
+    user.username = req.body.username;
+    user.about = req.body.about;
+    user.website = req.body.website;
+
+    if (req.file) {
+      user.profileimage = req.file.filename;
+    }
+
+    await user.save();
+
+    req.login(user, function (err) {
+      if (err) return next(err);
+      res.redirect('/FinalPage');
+    });
+  } catch (err) {
+    console.error("Update failed:", err);
+    res.redirect('/edditPf');
+  }
+});
+
+
+/* Logout */
+router.get('/logout', (req, res, next) => {
+  req.logOut((err) => {
+    if (err) return next(err);
+    res.redirect('/loginus');
+  });
+});
+
+/* Middleware - check login */
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) return next();
+  res.redirect('/loginus');
+}
+
 module.exports = router;

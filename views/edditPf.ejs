@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/stylesheets/eddit.css">
-  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" type="image/x-icon">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/stylesheets/eddit.css" />
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" type="image/x-icon" />
   <title>Edit Profile - Pinterest</title>
 </head>
 
@@ -16,129 +16,73 @@
         <button onclick="window.location.href='/account'" class="back-button">&#10094;&#10094;</button>
       </div>
       <div class="a1-sidebar-item a1-active">Edit profile</div>
-      <div class="a1-sidebar-item">Account management</div>
-      <div class="a1-sidebar-item">Profile visibility</div>
-      <div class="a1-sidebar-item">Tune your home feed</div>
-      <div class="a1-sidebar-item">Claimed accounts</div>
-      <div class="a1-sidebar-item">Social permissions</div>
-      <div class="a1-sidebar-item">Notifications</div>
-      <div class="a1-sidebar-item">Privacy and data</div>
-      <div class="a1-sidebar-item">Security</div>
-      <div class="a1-sidebar-item">Branded Content</div>
     </div>
 
     <div class="a1-main-content">
-      <div class="MyClassbackkBtn">
-        <button onclick="window.location.href='/account '" class="back-button">&#10094;&#10094;</button>
-      </div>
       <h1>Edit profile</h1>
-      <p class="a1-description">Keep your personal details private. Information you add here is visible to anyone who
-        can view your profile.</p>
+      <p class="a1-description">
+        Keep your personal details private. Information you add here is visible to anyone who can view your profile.
+      </p>
 
-      <div class="a1-form-section">
-        <div class="a1-form-label">Photo</div>
-        <div class="a1-profile-photo">
-          <div class="a1-photo-container">
-            <img id="profileImage" src="/api/placeholder/80/80" alt="Profile picture" />
+      <!-- enctype added to allow file upload -->
+      <form action="/updateprofile" method="POST" enctype="multipart/form-data">
+        <div class="a1-form-section">
+          <div class="a1-form-label">Photo</div>
+          <div class="a1-profile-photo">
+            <div class="a1-photo-container">
+              <img id="profileImage" src="/uploads/<%= user.profileimage %>" alt="Profile picture" />
+            </div>
+            <input type="file" id="profileImageInput" name="dp" accept="image/*" style="display: none;" />
+            <button class="a1-change-btn" type="button" onclick="document.getElementById('profileImageInput').click();">Change</button>
           </div>
-          <input type="file" id="profileImageInput" style="display: none;" accept="image/*" />
-          <button class="a1-change-btn" onclick="document.getElementById('profileImageInput').click();">Change</button>
         </div>
-      </div>
 
-      <div class="a1-name-row">
-        <div class="a1-name-column">
-          <div class="a1-form-label">Full name</div>
-          <input type="text" class="a1-form-control" value="<%=fullname%>" />
+        <div class="a1-name-row">
+          <div class="a1-name-column">
+            <div class="a1-form-label">Full name</div>
+            <input type="text" class="a1-form-control" name="fullname" value="<%= user.fullname %>" required />
+          </div>
+          <div class="a1-name-column">
+            <div class="a1-form-label">UserName</div>
+            <input type="text" class="a1-form-control" name="username" value="<%= user.username %>" required />
+          </div>
         </div>
-        <div class="a1-name-column">
-          <div class="a1-form-label">UserName</div>
-          <input type="text" class="a1-form-control" value="<%=username%>" />
+
+        <div class="a1-form-section">
+          <div class="a1-form-label">About</div>
+          <textarea class="a1-form-control" name="about" placeholder="Tell your story"><%= user.about || '' %></textarea>
         </div>
-      </div>
 
-      <div class="a1-form-section">
-        <div class="a1-form-label">About</div>
-        <textarea class="a1-form-control" placeholder="Tell your story"></textarea>
-      </div>
-
-      <div class="a1-form-section">
-        <div class="a1-form-label">Pronouns</div>
-        <div class="a1-dropdown">
-          <button class="a1-dropdown-toggle">Add your pronouns</button>
+        <div class="a1-form-section">
+          <div class="a1-form-label">Website</div>
+          <input type="text" class="a1-form-control" name="website" placeholder="https://" value="<%= user.website || '' %>" />
+          <p class="a1-website-helper">Add a link to drive traffic to your site</p>
         </div>
-        <p class="a1-pronouns-helper">Choose up to 2 sets of pronouns to appear on your profile so others know how to
-          refer to you. You can edit or remove these any time.</p>
-      </div>
 
-      <div class="a1-form-section">
-        <div class="a1-form-label">Website</div>
-        <input type="text" class="a1-form-control" placeholder="https://" />
-        <p class="a1-website-helper">Add a link to drive traffic to your site</p>
-      </div>
-
-      <div class="a1-action-buttons">
-        <button class="a1-btn a1-btn-reset" id="a1-reset-btn">Reset</button>
-        <button class="a1-btn a1-btn-save" id="a1-save-btn">Save</button>
-        <button class="a1-btn a1-btn-save" id="a1-edit-btn" style="display: none;">Edit</button>
-      </div>
+        <div class="a1-action-buttons">
+          <button type="reset" class="a1-btn a1-btn-reset">Reset</button>
+          <button type="submit" class="a1-btn a1-btn-save">Save</button>
+        </div>
+      </form>
     </div>
-
-    <script>
-      const saveBtn = document.getElementById('a1-save-btn');
-      const resetBtn = document.getElementById('a1-reset-btn');
-      const editBtn = document.getElementById('a1-edit-btn');
-
-      saveBtn.addEventListener('click', function () {
-        alert('Profile updated successfully!');
-        saveBtn.style.display = 'none';
-        resetBtn.style.display = 'none';
-        editBtn.style.display = 'inline-block';
-
-        document.querySelectorAll('input.a1-form-control, textarea.a1-form-control').forEach(el => el.disabled = true);
-        const dropdownToggle = document.querySelector('.a1-dropdown-toggle');
-        if (dropdownToggle) dropdownToggle.disabled = true;
-        document.getElementById('profileImageInput').disabled = true;
-      });
-
-      resetBtn.addEventListener('click', function () {
-        document.querySelectorAll('input.a1-form-control, textarea.a1-form-control').forEach(el => el.value = '');
-      });
-
-      editBtn.addEventListener('click', function () {
-        document.querySelectorAll('input.a1-form-control, textarea.a1-form-control').forEach(el => el.disabled = false);
-        const dropdownToggle = document.querySelector('.a1-dropdown-toggle');
-        if (dropdownToggle) dropdownToggle.disabled = false;
-        document.getElementById('profileImageInput').disabled = false;
-
-        saveBtn.style.display = 'inline-block';
-        resetBtn.style.display = 'inline-block';
-        editBtn.style.display = 'none';
-      });
-
-      document.querySelectorAll('.a1-sidebar-item').forEach(item => {
-        item.addEventListener('click', function () {
-          document.querySelectorAll('.a1-sidebar-item').forEach(i => i.classList.remove('a1-active'));
-          this.classList.add('a1-active');
-        });
-      });
-
-      // Profile image preview logic
-      const profileInput = document.getElementById('profileImageInput');
-      const profileImg = document.getElementById('profileImage');
-
-      profileInput.addEventListener('change', function () {
-        const file = this.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = function (e) {
-            profileImg.src = e.target.result;
-          };
-          reader.readAsDataURL(file);
-        }
-      });
-    </script>
   </div>
+
+  <script>
+    // Profile image preview
+    const profileInput = document.getElementById('profileImageInput');
+    const profileImg = document.getElementById('profileImage');
+
+    profileInput.addEventListener('change', function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          profileImg.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
 </body>
 
 </html>

@@ -14,10 +14,12 @@
         <header>
             <h1 class="page-title">Your saved ideas</h1>
             <div onclick="window.location.href='/account'"  class="profile">
-                <div class="profile-img"></div>
+                <div class="profile-img">
+                    <img src="/images/uploads/<%= user.profileimage %>" alt="">
+                </div>
                 <div  class="profile-info">
                     <div class="profile-name">
-                        <%=fullname%>
+                        <%= user.fullname %>
                     </div>
                     <div class="profile-following">0 following</div>
                 </div>

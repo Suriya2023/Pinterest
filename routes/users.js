@@ -26,7 +26,8 @@ let userName = mongoose.Schema({
   posts: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'post'
-  }]
+  }],
+  profileimage: String,
 
 })
 userName.plugin(plm);

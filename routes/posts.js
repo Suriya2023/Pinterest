@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
 const postSchema = mongoose.Schema({
     images: String,
-    PosText: String,
+    posttext: String,
+    title: String,
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'

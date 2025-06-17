@@ -7,6 +7,8 @@
     <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" type="image/x-icon">
     <title>Pinterest-like Layout</title>
     <link rel="stylesheet" href="/stylesheets/FinalPage.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
@@ -25,7 +27,7 @@
             <div title="notification" id="OnopenNotification" class="sidebar-icon">
                 <i class="fas fa-bell"></i>
             </div>
-            <div title="Post" onclick="window.location.href='/post'" class="sidebar-icon">
+            <div title="Post" onclick="window.location.href='/uploadpost'" class="sidebar-icon">
                 <i class="fa-solid fa-plus"></i>
             </div>
             <div title="Chate" class="sidebar-icon">
@@ -47,10 +49,9 @@
                     <div class="profile-menu">
                         <div onclick="document.getElementById('dot').style.display === 'none' ? document.getElementById('dot').style.display = 'block' : document.getElementById('dot').style.display = 'none'"
                             class="profile-icon" id="profileMenuBtn">
-                            <!-- <%=fullname.charAt(0)%> -->
-                            <img class="top-icone"
-                                src="https://i.pinimg.com/75x75_RS/06/55/e7/0655e784b7bab337285e3f1ac1711e05.jpg"
+                            <img class="top-icone" id="profileimage" src="/images/uploads/<%= user.profileimage %>"
                                 alt="">
+
                         </div>
                         <!-- <button id="dot" style="display: none;">Hellow</button> -->
                         <div class="dropdown-menu" id="profileDropdown">
@@ -59,10 +60,10 @@
                                 class="dropdown-header">
                                 <div>
                                     <h4>
-                                        <%=fullname%>
+                                        <%= user.fullname%>
                                     </h4>
                                     <p>
-                                        <%=email%>
+                                        <%= user.email%>
                                     </p>
                                 </div><i class="fa-solid fa-caret-down"></i>
                             </div>
@@ -76,312 +77,53 @@
                 </div>
             </div>
 
-            <div id="DomNone" class="content-area">
-                <div id="a1ContainerBody">
-                    <div class="a1Container">
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/474x/a3/f4/91/a3f4914fdd58b60776537b0337d1dd11.jpg"
-                                alt="Interactive PDF Resume Template" class="a1Image">
-                            <div class="a1Caption">Interactive PDF Resume Template</div>
-                        </div>
+            <div id="DomNone" class="content-area mx-auto max-w-screen-xl px-4 md:px-8">
+                <div class="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+                    <% posts.forEach(function(elem) { %>
+                        <div class="break-inside-avoid shadow-md rounded-xl overflow-hidden bg-white">
+                            <!-- Post Image -->
+                            <img src="/images/uploads/<%= elem.images %>" alt="Post Image"
+                                class="w-full object-cover rounded-t-xl">
 
-                        <div class="pin">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/736x/97/d8/ac/97d8ac512092b685c935db1649d7a151.jpg"
-                                alt="White Ferrari F50">
-                            <div class="pin-title">White Ferrari F50</div>
-                        </div>
-                        <div class="pin">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/474x/0b/d3/b7/0bd3b723d68b5696e51bd5ecbc2a61bd.jpg"
-                                alt="Interior Design">
-                        </div>
+                            <!-- User Info -->
+                            <div class="p-3 flex items-start gap-3">
+                                <!-- Profile Image -->
+                                <div class="w-10 h-10 rounded-full overflow-hidden border">
+                                    <img src="/images/uploads/<%= elem.user.profileimage %>" alt="Profile Image"
+                                        class="w-full h-full object-cover">
+                                </div>
 
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/474x/f3/19/1e/f3191e723a6258a0c3fa478b2a755570.jpg"
-                                alt="Majestic Lion Portrait" class="a1Image">
+                                <!-- Username and Info -->
+                                <div class="text-left">
+                                    <h3 class="font-semibold text-sm text-gray-800">
+                                        <%= elem.user.username %>
+                                    </h3>
+                                    <p class="text-xs text-gray-500 truncate w-40">
+                                        <%= elem.title %>
+                                    </p>
+                                    <p class="text-xs text-gray-400">
+                                        Pins: <%= elem.user.posts.length %>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/236x/64/1e/9b/641e9ba2ae6f6ba9585365d30efa09b4.jpg"
-                                alt="Breaking Bad Character Portrait" class="a1Image">
-                        </div>
-
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/474x/39/a0/47/39a04753954d5dadc08fe15924df275d.jpg"
-                                alt="Riding in the most beautiful sunset" class="a1Image">
-                            <div class="a1Caption">Riding in the most beautiful sunset</div>
-                        </div>
-
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/474x/fb/40/b4/fb40b4d7d4fe19cfd826d8fc9229d9e8.jpg"
-                                alt="4k HD Wallpaper: Lightning Car" class="a1Image">
-                            <div class="a1Caption">4k HD Wallpaper: Lightning Car</div>
-                        </div>
-
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/474x/8e/53/a0/8e53a0a23f74cdd46888e2301904f1eb.jpg"
-                                alt="Marvel Incredible Hulk Smash" class="a1Image">
-                            <div class="a1Caption">Marvel Incredible Hulk Smash</div>
-                        </div>
-
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/236x/ef/37/5a/ef375a63e9037d722adbcfce7c8151a8.jpg"
-                                alt="Adobe Premiere Pro" class="a1Image">
-                            <div class="a1Caption">Create engaging video content</div>
-                            <div class="a1Sponsored">Adobe</div>
-                            <div class="a1AdIcon">•••</div>
-                        </div>
-
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/736x/1d/68/79/1d6879377d004c07ecc11f3c4e97b1a1.jpg"
-                                alt="Forest at sunset" class="a1Image">
-                            <div class="a1Caption">2025</div>
-                        </div>
-
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/236x/1e/1e/91/1e1e914844bc64cdfebc43a43d18d083.jpg"
-                                alt="Tiger Logo Design" class="a1Image">
-                            <div class="a1AdIcon">•••</div>
-                        </div>
-
-                        <div class="a1Item">
-                            <video loading="lazy"
-                                poster="https://i.pinimg.com/236x/60/34/8f/60348f33fcc947789a6deb5637474a9b.jpg"
-                                preload="auto" src="blob:https://in.pinterest.com/a20cfb71-8895-448e-a139-d9ab41781067"
-                                alt="Invitation Cards" class="a1Image">
-                                <div class="a1Caption">Invitations Cards</div>
-
-                        </div>
-
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/236x/cc/34/f0/cc34f00c30dad22fd0095a3a473dfde3.jpg"
-                                alt="Quirky Mr.Joker" class="a1Image">
-                            <div class="a1Caption">Quirky Mr.Joker: Joaquin Phoenix</div>
-                        </div>
-
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/474x/18/99/8c/18998c7a2edb4972a208853eb8480107.jpg"
-                                alt="Eagle in flight" class="a1Image">
-                            <div class="a1Caption">eagle 15</div>
-                        </div>
-
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/474x/15/10/72/15107297362b4439e88f25a4819cc208.jpg"
-                                alt="City skyline at night" class="a1Image">
-                            <div class="a1Caption">Photo by Mike Enerio on Unsplash</div>
-                        </div>
-
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/474x/42/e9/75/42e975f1f16e7328537554793ca31bae.jpg"
-                                alt="HD wallpaper" class="a1Image">
-                            <div class="a1Caption">Free download | HD wallpaper</div>
-                        </div>
-
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/474x/f7/22/2e/f7222e418c96c8e00116e36c64d98b96.jpg"
-                                alt="Portfolio template" class="a1Image">
-                        </div>
-
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/736x/3b/77/10/3b77102e79f1b4bf5ee53b65c4a4f805.jpg"
-                                alt="Luxury in Motion: Realistic Car Render" class="a1Image">
-                            <div class="a1Caption">Luxury in Motion: Realistic Car Render</div>
-                        </div>
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/236x/5c/3a/f7/5c3af7fbdd6e84a8685cba9f286c7782.jpg"
-                                alt="Professional Services Website" class="a1Image">
-                            <div class="a1Caption">Professional Services Website UI</div>
-                            <div class="a1AdIcon">?</div>
-                        </div>
-
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/736x/62/ab/0d/62ab0d62776baf8ec36439d2c0b360a9.jpg"
-                                alt="Synthwave Future Car" class="a1Image">
-                            <div class="a1Caption">Synthwave Future Car with neon lights</div>
-                        </div>
-
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src="	https://i.pinimg.com/474x/21/c7/fe/21c7fe97850c0ba7e08cbef68c505b5d.jpg"
-                                alt="Types of Shoes Infographic" class="a1Image">
-                        </div>
-
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src="	https://i.pinimg.com/474x/b3/9d/1a/b39d1a122aac07242d9ffb0ae46d01d4.jpg"
-                                alt="Peaky Blinders Scene" class="a1Image">
-                        </div>
-
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/736x/70/47/a5/7047a5f036eb0344c3396ead26b46541.jpg"
-                                alt="Climatic wallpaper with car" class="a1Image">
-                            <div class="a1Caption">★ Climatic wallpaper</div>
-                        </div>
-
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/474x/e0/52/59/e05259d373a3235b1f22d447e0effddc.jpg"
-                                alt="Roaring Lion Close-up" class="a1Image">
-                        </div>
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src=" 	https://i.pinimg.com/474x/fe/0b/20/fe0b207fa9e9e9358b647b430bd02aa6.jpg"
-                                alt="Riding in the most beautiful sunset" class="a1Image">
-                            <div class="a1Caption">Riding in the most beautiful sunset</div>
-                        </div>
-
-                        <div class="a1Item">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/736x/e8/c4/d5/e8c4d5b3a7c6208892ee790c2594e7cf.jpg"
-                                alt="4k HD Wallpaper: Lightning Car" class="a1Image">
-                            <div class="a1Caption">4k HD Wallpaper: Lightning Car</div>
-                        </div>
-
-                    </div>
-                </div><br>
-                <div class="ideas-section">
-                    <h3>Ideas you might like</h3>
-                    <div class="idea-cards">
-                        <div class="idea-card">
-                            <img loading="lazy"
-                                src=" https://i.pinimg.com/474x/17/41/08/174108b2de8e7d9bdc3217a2310fb022.jpg"
-                                alt="Colorful destinations">
-                            <div class="idea-card-footer">Colorful</div>
-                        </div>
-                        <div class="idea-card">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/474x/e9/3b/de/e93bdeafd2adee28201542c86c0d2cde.jpg"
-                                alt="Beach wallpapers">
-                            <div class="idea-card-footer"> wallpapers</div>
-                        </div>
-                        <div class="idea-card">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/474x/20/5a/e4/205ae4a3e0390877cbb074e4625d1bc9.jpg"
-                                alt="Dubai table & rings">
-                            <div class="idea-card-footer">Study Stress</div>
-                        </div>
-                        <div class="idea-card">
-                            <img loading="lazy"
-                                src="https://i.pinimg.com/474x/5f/a9/06/5fa906299ffb2a157046eead5231a583.jpg"
-                                alt="Desert photography">
-                            <div class="idea-card-footer">Decent photography</div>
-                        </div>
-                    </div>
+                        <% }) %>
                 </div>
-                <div class="masonry-grid">
-
-                    <div class="pin">
-                        <img loading="lazy"
-                            src="https://i.pinimg.com/736x/88/a4/61/88a4614caa1940adbfd8aeb853e839e3.jpg"
-                            alt="HD Wallpaper: Lightning">
-                    </div>
-                    <div class="pin">
-                        <img loading="lazy"
-                            src="https://i.pinimg.com/736x/ac/f1/b8/acf1b88c976aabdaba77be1668b3e04e.jpg"
-                            alt="Dark Silhouette">
-                    </div>
-                    <br>
-                    <div class="pin">
-                        <img loading="lazy"
-                            src="https://i.pinimg.com/474x/e3/a6/b1/e3a6b11fd7875759e78b61251470bbae.jpg"
-                            alt="Batman - Edit">
-                    </div>
-                    <div class="pin">
-                        <img loading="lazy"
-                            src="https://i.pinimg.com/474x/fc/02/64/fc026433a20db53bc4447d4e41f8f830.jpg"
-                            alt="Cityscape">
-                    </div>
-
-                    <div class="pin">
-                        <img loading="lazy"
-                            src="https://i.pinimg.com/474x/a5/67/ea/a567ea71e816d3df31cb72eefdaafe10.jpg"
-                            alt="Relaxed cat">
-                    </div>
-                    <div class="pin">
-                        <img loading="lazy"
-                            src="https://i.pinimg.com/474x/6f/75/fe/6f75fee0de602907c462735f7326fab8.jpg"
-                            alt="Multiverse Xmas">
-                    </div>
-
-                    <div class="pin">
-                        <img loading="lazy"
-                            src="https://i.pinimg.com/474x/f4/f2/38/f4f238b6582742daa054f2e8827bdafa.jpg"
-                            alt="Dark Vader">
-                    </div>
-                    <div class="pin">
-                        <img loading="lazy"
-                            src="https://i.pinimg.com/736x/ab/1c/91/ab1c9110308a114c566d30aa37693dc0.jpg" alt="Panda">
-                    </div>
-                    <div class="pin">
-                        <img loading="lazy"
-                            src=" https://i.pinimg.com/474x/38/a5/80/38a5802600e0d7ffea5e57fa30a9db93.jpg"
-                            alt="Gaming Setup">
-                    </div>
-                    <div class="pin">
-                        <img loading="lazy"
-                            src="https://i.pinimg.com/474x/de/39/a1/de39a12236a727794f0ac7d400262dd7.jpg"
-                            alt="Digital Sunset">
-                    </div>
-                    <div class="pin">
-                        <img loading="lazy"
-                            src="https://i.pinimg.com/474x/65/d6/b6/65d6b6447e454e4d6a45a4e056d5cb6e.jpg"
-                            alt="Ocean Wave">
-                    </div>
-                    <div class="pin">
-                        <img loading="lazy"
-                            src="https://i.pinimg.com/474x/59/db/b4/59dbb4c4b91975d5d9941a4f6e4a7366.jpg"
-                            alt="Black Smoke Art">
-                    </div>
-                    <div class="pin">
-                        <img loading="lazy"
-                            src="https://i.pinimg.com/474x/86/a4/ab/86a4abca20de93ec2cf6c25ad6e4a639.jpg"
-                            alt="HD wallpaper: oriented pearl">
-                    </div>
-                    <div class="pin">
-                        <img loading="lazy"
-                            src="https://i.pinimg.com/736x/5f/b6/8d/5fb68dbd0442abce0b102f59b2a5fc8e.jpg"
-                            alt="4K PC Wallpapers Free">
-                    </div>
-                    <div class="pin">
-                        <img loading="lazy"
-                            src="https://i.pinimg.com/474x/53/23/06/5323067a9fc061f9996692fb27e811c2.jpg" alt="Galaxy">
-                    </div>
-                    <div class="pin">
-                        <img loading="lazy"
-                            src="https://i.pinimg.com/474x/34/5f/3f/345f3f06b8160e946e782d6047313fe5.jpg"
-                            alt="Red Bird">
-                    </div>
-                    <div class="pin">
-                        <img loading="lazy"
-                            src="https://i.pinimg.com/474x/0a/2d/87/0a2d8786e0b21bf90cb57f8ed0b89085.jpg"
-                            alt="Movie Interface">
-                    </div>
-                </div>
-
-
-
-
-
             </div>
+
+            <style>
+                /* Smooth card transitions */
+                .break-inside-avoid {
+                    transition: all 0.3s ease;
+                }
+
+                .break-inside-avoid:hover {
+                    transform: scale(1.03);
+                    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                }
+            </style>
+
+
 
 
             <!-- notification  -->
@@ -584,6 +326,9 @@
 
                 </div>
             </div>
+
+
+
         </div>
 
 
@@ -614,12 +359,21 @@
 
 
 
-      
+
     </div>
 
 
 
     <script>
+        const profileMenuBtn = document.getElementById('profileMenuBtn');
+        const profileDropdown = document.getElementById('profileDropdown');
+
+        profileMenuBtn.addEventListener('click', function () {
+            profileDropdown.classList.toggle('active');
+        });
+
+
+
         //   hodeNotification
         let DomNone = document.getElementById("DomNone")
         let NontficationOn = document.getElementById('NontficationOn')
@@ -636,45 +390,7 @@
         }
 
 
-        const profileMenuBtn = document.getElementById('profileMenuBtn');
-        const profileDropdown = document.getElementById('profileDropdown');
 
-        profileMenuBtn.addEventListener('click', function () {
-            profileDropdown.classList.toggle('active');
-        });
-
-        document.addEventListener('click', function (event) {
-            if (!profileMenuBtn.contains(event.target) && !profileDropdown.contains(event.target)) {
-                profileDropdown.classList.remove('active');
-            }
-        });
-
-        const sidebarIcons = document.querySelectorAll('.sidebar-icon:not(.logo)');
-        const tabItems = document.querySelectorAll('.tab-item');
-
-        sidebarIcons.forEach((icon, index) => {
-            icon.addEventListener('click', function () {
-                sidebarIcons.forEach(i => i.classList.remove('active'));
-                this.classList.add('active');
-
-                if (index < tabItems.length) {
-                    tabItems.forEach(t => t.classList.remove('active'));
-                    tabItems[index].classList.add('active');
-                }
-            });
-        });
-
-        tabItems.forEach((tab, index) => {
-            tab.addEventListener('click', function () {
-                tabItems.forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-
-                if (index < sidebarIcons.length) {
-                    sidebarIcons.forEach(i => i.classList.remove('active'));
-                    sidebarIcons[index].classList.add('active');
-                }
-            });
-        });
     </script>
 </body>
 

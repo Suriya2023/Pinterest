@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" type="image/x-icon">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="stylesheet" href="/stylesheets/Account.css">
     <title>Pinterest Profile</title>
 
@@ -22,20 +23,24 @@
             </svg>
         </button>
 
+        <form hidden id="profileform" action="/profileimage" method="post" enctype="multipart/form-data">
+            <input type="file" name="dp">
+        </form>
+
         <div class="profile-section">
             <div class="profile-image">
-                <img src="https://i.pinimg.com/280x280_RS/06/55/e7/0655e784b7bab337285e3f1ac1711e05.jpg"
-                    alt="Profile picture" width="120" height="120">
+                <img id="profileimage" src="/images/uploads/<%= user.profileimage %>" alt="Profile picture" width="120"
+                    height="120">
             </div>
             <h1 class="profile-name">
-                <%= fullname%>
+                <%= user.fullname%>
             </h1>
             <div class="profile-username">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2L15 8L21 9L16.5 14L18 20L12 17L6 20L7.5 14L3 9L9 8L12 2Z" stroke="#767676" fill="none"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
-                <p>@<%= username %>
+                <p>@<%= user.username %>
                 </p>
             </div>
             <div class="follow-info">0 following</div>
@@ -46,23 +51,30 @@
         </div>
 
         <div class="tabs">
-            <div id="created-tab" class="tab">Created</div>
-            <div id="saved-tab" class="tab active">Saved</div>
+            <div id="created-tab" class="tab active">Created</div>
+            <div id="saved-tab" class="tab  ">Saved</div>
         </div>
 
         <div class="content-area">
+
             <div id="created-content" class="tab-content">
                 <div class="empty-created">
-                    <div class="empty-state-icon">
-                        <svg viewBox="0 0 100 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="50" cy="35" r="25" stroke="black" stroke-width="2" />
-                            <path d="M40 35 L60 35" stroke="black" stroke-width="2" />
-                            <path d="M50 25 L50 45" stroke="black" stroke-width="2" />
-                        </svg>
-                    </div>
+                    <a href="/uploadpost" style="cursor: pointer;">
+                        <div class="empty-state-icon">
+                            <svg viewBox="0 0 100 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="35" r="25" stroke="black" stroke-width="2" />
+                                <path d="M40 35 L60 35" stroke="black" stroke-width="2" />
+                                <path d="M50 25 L50 45" stroke="black" stroke-width="2" />
+                            </svg>
+                        </div>
+                    </a>
                     <h2 class="empty-state-title">Create your first Pin</h2>
                     <p class="empty-state-text">Pins are visual bookmarks you create for ideas you love</p>
-                    <button class="btn btn-primary">Create Pin</button>
+
+                    <form action="/uploadpost" method="get">
+                        <button type="submit" class="btn btn-primary">Create Pin</button>
+                    </form>
+
                 </div>
             </div>
 
@@ -80,10 +92,10 @@
                     <p class="empty-state-text">Boards help you organize the Pins you save into collections</p>
                     <button class="btn btn-primary">Create board</button>
                     <br>
-                    <form action="/upload" method="post" enctype="multipart/form-data">
-                        <input type="file" name="file">
-                        <input type="submit" value="upload" name="upload">
-                    </form>
+                    <!-- <form action="/upload" method="post" enctype="multipart/form-data">
+                            <input type="file" name="file">
+                            <input type="submit" value="upload" name="upload">
+                        </form> -->
                 </div>
 
             </div>
@@ -91,8 +103,18 @@
 
         </div>
 
+        <hr>
+        <!-- Create post show Pins -->
 
-
+        <div class="card">
+            <div class="w-52 my-10 h-40 bg-zinc-200 rounded-lg overflow-hidden">
+                <img src="/images/uploads/<%= user.posts[0]?.images %>" alt="Pins" class="w-full  h-full object-cover">
+            </div>
+            <a href="#" class="inline-block text-xl font-semibold mt-3 ">Your upload Pins</a>
+            <h5 class="text-sm font-medium opacity-60 ">
+                <%= user.posts.length %> Pins
+            </h5>
+        </div>
     </div>
 
     <button class="help-button">?</button>
@@ -123,7 +145,19 @@
             savedContent.classList.add('active');
             createdContent.classList.remove('active');
         });
+
+        // document.getElementById('profileimage').style.cursor = 'pointer'
+        document.querySelector('#profileimage').addEventListener('click', function () {
+            document.querySelector('#profileform').click();
+        })
+
+        document.querySelector('#profileimage').addEventListener('change', function () {
+            document.querySelector('#profileform').submit();
+
+        })
     </script>
+
+
 </body>
 
 </html>
