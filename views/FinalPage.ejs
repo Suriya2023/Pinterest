@@ -76,39 +76,42 @@
                     </div>
                 </div>
             </div>
-   <div id="DomNone" class="content-area mx-auto max-w-screen-xl px-4 md:px-8">
-                <div class="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-                    <% posts.forEach(function(elem) { %>
-                        <div class="break-inside-avoid shadow-md rounded-xl overflow-hidden bg-white">
-                            <!-- Post Image -->
-                            <img src="/images/uploads/<%= elem.images %>" alt="Post Image"
-                                class="w-full object-cover rounded-t-xl">
+      <div id="DomNone" class="content-area mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+  <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+    <% posts.forEach(function(elem) { %>
+      <div class="break-inside-avoid shadow-md rounded-xl overflow-hidden bg-white transition-transform duration-300 hover:scale-[1.03] hover:shadow-lg">
+        
+        <!-- Post Image -->
+        <img src="/images/uploads/<%= elem.images %>" alt="Post Image"
+          class="w-full h-auto object-cover rounded-t-xl">
 
-                            <!-- User Info -->
-                            <div class="p-3 flex items-start gap-3">
-                                <!-- Profile Image -->
-                                <div class="w-10 h-10 rounded-full overflow-hidden border">
-                                    <img src="/images/uploads/<%= elem.user.profileimage %>" alt="Profile Image"
-                                        class="w-full h-full object-cover">
-                                </div>
+        <!-- User Info -->
+        <div class="p-3 flex items-start gap-3">
+          
+          <!-- Profile Image -->
+          <div class="w-10 h-10 rounded-full overflow-hidden border">
+            <img src="/images/uploads/<%= elem.user.profileimage %>" alt="Profile Image"
+              class="w-full h-full object-cover">
+          </div>
 
-                                <!-- Username and Info -->
-                                <div class="text-left">
-                                    <h3 class="font-semibold text-sm text-gray-800">
-                                        <%= elem.user.username %>
-                                    </h3>
-                                    <p class="text-xs text-gray-500 truncate w-40">
-                                        <%= elem.title %>
-                                    </p>
-                                    <p class="text-xs text-gray-400">
-                                        Pins: <%= elem.user.posts.length %>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <% }) %>
-                </div>
-            </div>
+          <!-- Username and Info -->
+          <div class="text-left">
+            <h3 class="font-semibold text-sm text-gray-800">
+              <%= elem.user.username %>
+            </h3>
+            <p class="text-xs text-gray-500 truncate max-w-[10rem]">
+              <%= elem.title %>
+            </p>
+            <p class="text-xs text-gray-400">
+              Pins: <%= elem.user.posts.length %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>
+
 
             <style>
                 /* Smooth card transitions */
@@ -120,219 +123,235 @@
                     transform: scale(1.03);
                     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
                 }
-            </style>
 
-
-
-
-
-
-            <!-- notification  -->
-
-            <div id="NontficationOn" style="display: none;" class="idNotficaton">
-                <div class="a22-main-content">
-
-                    <div class="a22-updates">
-
-                        <div>
-                            <button onclick="window.location.href='/FinalPage'"
-                                class="back-button">&#10094;&#10094;</button>
-
-                        </div>
-                        <br><br>
-                        <h2>Updates</h2>
-
-                        <div class="a22-updates-section">
-                            <h3>New</h3>
-                            <div class="a22-update-item">
-                                <div class="a22-update-image">
-                                    <img src="https://i.pinimg.com/136x136/e1/14/e1/e114e1e890809eeeab7b64e7d04e431d.jpg"
-                                        alt="Placeholder image">
-                                </div>
-                                <div class="a22-update-text">
-                                    <p>You have a good eye</p>
-                                </div>
-                                <span class="a22-update-time">2h</span>
-                            </div>
-                        </div>
-
-                        <div class="a22-updates-section">
-                            <h3>Seen</h3>
-                            <div class="a22-update-item">
-                                <div class="a22-update-image">
-                                    <img src="https://i.pinimg.com/136x136/60/95/71/609571a4584664c8b1f34026b96aedcc.jpg"
-                                        alt="Placeholder image">
-                                </div>
-                                <div class="a22-update-text">
-                                    <p>This could be your vibe</p>
-                                </div>
-                                <span class="a22-update-time">8h</span>
-                            </div>
-
-                            <div class="a22-update-item">
-                                <div class="a22-update-image">
-                                    <img src="https://i.pinimg.com/136x136/ae/0b/24/ae0b242114a9926c3c5378db6f63473e.jpg"
-                                        alt="Placeholder image">
-                                </div>
-                                <div class="a22-update-text">
-                                    <p>Web and App Design for you</p>
-                                </div>
-                                <span class="a22-update-time">1d</span>
-                            </div>
-
-                            <div class="a22-update-item">
-                                <div class="a22-update-image">
-                                    <img src="https://i.pinimg.com/136x136/05/3f/a8/053fa838ddb01395202a3b944688ca4f.jpg"
-                                        alt="Placeholder image">
-                                </div>
-                                <div class="a22-update-text">
-                                    <p>You have a good eye</p>
-                                </div>
-                                <span class="a22-update-time">1d</span>
-                            </div>
-
-                            <div class="a22-search-item">
-                                <div class="a22-search-icon">
-                                    <i class="fas fa-search"></i>
-                                </div>
-                                <div class="a22-search-text">
-                                    <p>Still searching? Explore ideas related to <span>Background</span></p>
-                                </div>
-                                <span class="a22-update-time">1d</span>
-                            </div>
-
-                            <div class="a22-update-item">
-                                <div class="a22-update-image">
-                                    <img src="https://i.pinimg.com/136x136/d3/6f/29/d36f29b825a38f79eb3b294c498a3fca.jpg"
-                                        alt="Placeholder image">
-                                </div>
-                                <div class="a22-update-text">
-                                    <p>Weather and Climate for you</p>
-                                </div>
-                                <span class="a22-update-time">3d</span>
-                            </div>
-
-                            <div class="a22-update-item">
-                                <div class="a22-update-image">
-                                    <img src="https://i.pinimg.com/136x136/f7/d2/7f/f7d27f9603b5127edefbd742fbfd0e40.jpg"
-                                        alt="Placeholder image">
-                                </div>
-                                <div class="a22-update-text">
-                                    <p>These ideas are so you</p>
-                                </div>
-                                <span class="a22-update-time">3d</span>
-                            </div>
-
-                            <div class="a22-update-item">
-                                <div class="a22-update-image">
-                                    <img src="https://i.pinimg.com/136x136/17/49/03/17490377c4973cae52906c2325a35db9.jpg"
-                                        alt="Placeholder image">
-                                </div>
-                                <div class="a22-update-text">
-                                    <p>Black for you</p>
-                                </div>
-                                <span class="a22-update-time">3d</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="a22-feed">
-                        <div class="a22-feed-header">
-                            <h2>April 25, 2025</h2>
-                            <h1>Stay Inspired</h1>
-
-
-
-                        </div>
-
-                        <div class="a22-grid">
-                            <div class="a22-grid-item">
-                                <img src="https://i.pinimg.com/474x/a4/0d/d1/a40dd1dc246b89dfed2c97b366cf36ee.jpg"
-                                    alt="nature collage">
-                                <div class="a22-item-overlay">
-                                    <h3>Earthy art</h3>
-                                    <h2>Nature-inspired collages</h2>
-                                </div>
-                            </div>
-
-                            <div class="a22-grid-item">
-                                <img src="https://i.pinimg.com/474x/a6/77/9f/a6779fdbe0c3466cfad6196a3cc98c7d.jpg"
-                                    alt="wedding photo">
-                                <div class="a22-item-overlay">
-                                    <h3>Precious moments</h3>
-                                    <h2>Dreamy wedding shots</h2>
-                                </div>
-                            </div>
-                            <div class="a22-grid-item">
-                                <img src="https://i.pinimg.com/474x/04/5f/43/045f437744f3ea385d5d7c3738922003.jpg"
-                                    alt="serene scene">
-                                <div class="a22-item-overlay">
-                                    <h3>Step into serenity</h3>
-                                    <h2>Most calming visuals</h2>
-                                </div>
-                            </div>
-
-                            <div class="a22-grid-item a22-quote-card">
-                                <img src="https://i.pinimg.com/736x/e6/42/c8/e642c8b2f93f1f0064e7b907e0c9c642.jpg"
-                                    alt="gradient background">
-                                <div class="a22-item-overlay">
-                                    <h3>You got this</h3>
-                                    <h2>Quotes for all the positive vibes</h2>
-                                </div>
-                                <div class="a22-quote-text">
-                                    I RADIATE<br>GODDESS ENERGY
-                                </div>
-                            </div>
-
-                            <div class="a22-grid-item">
-                                <img src="	https://i.pinimg.com/736x/2b/ee/8c/2bee8c0d3e2d9dccf653c4310d21ff0e.jpg"
-                                    alt="garden">
-                                <div class="a22-item-overlay">
-                                    <h3>Al fresco ideas</h3>
-                                    <h2>Balcony garden inspiration</h2>
-                                </div>
-                            </div>
-
-                            <div class="a22-grid-item">
-                                <img src="	https://i.pinimg.com/736x/d8/7a/65/d87a65ff913c6745f62321eaef292d83.jpg"
-                                    alt="person lying on grass">
-                                <div class="a22-item-overlay">
-                                    <h3>Astro aesthetics</h3>
-                                    <h2>It's time for Taurus season</h2>
-                                </div>
-                            </div>
-
-                            <div class="a22-grid-item">
-                                <img src="https://i.pinimg.com/474x/3c/bb/78/3cbb78099cbbea5d685676b2b65ad70a.jpg"
-                                    alt="nails design">
-                                <div class="a22-item-overlay">
-                                    <h3>Grounded glam</h3>
-                                    <h2>Earth tone nails</h2>
-                                </div>
-                            </div>
-
-
-                        </div>
-
-                        <div class="a22-feed-footer">
-                            <div class="a22-checkmark">
-                                <i class="fas fa-check" style="color: white;"></i>
-                            </div>
-                            <p>That's all for today!</p>
-                            <p>Come back tomorrow for more inspiration</p>
-                            <a href="#" class="a22-action-btn">Go to home feed</a>
-                        </div>
-                    </div>
-                    &nbsp;&nbsp;&nbsp;
-
-                </div>
-            </div>
-
-
+                
+            </style>  
 
         </div>
 
-        <div class="mobile-tabs" style="
+        <style>
+            /* Smooth card transitions */
+            .break-inside-avoid {
+                transition: all 0.3s ease;
+            }
+
+            .break-inside-avoid:hover {
+                transform: scale(1.03);
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            }
+        </style>
+
+
+
+
+
+
+        <!-- notification  -->
+
+        <div id="NontficationOn" style="display: none;" class="idNotficaton">
+            <div class="a22-main-content">
+
+                <div class="a22-updates">
+
+                    <div>
+                        <button onclick="window.location.href='/FinalPage'"
+                            class="back-button">&#10094;&#10094;</button>
+
+                    </div>
+                    <br><br>
+                    <h2>Updates</h2>
+
+                    <div class="a22-updates-section">
+                        <h3>New</h3>
+                        <div class="a22-update-item">
+                            <div class="a22-update-image">
+                                <img src="https://i.pinimg.com/136x136/e1/14/e1/e114e1e890809eeeab7b64e7d04e431d.jpg"
+                                    alt="Placeholder image">
+                            </div>
+                            <div class="a22-update-text">
+                                <p>You have a good eye</p>
+                            </div>
+                            <span class="a22-update-time">2h</span>
+                        </div>
+                    </div>
+
+                    <div class="a22-updates-section">
+                        <h3>Seen</h3>
+                        <div class="a22-update-item">
+                            <div class="a22-update-image">
+                                <img src="https://i.pinimg.com/136x136/60/95/71/609571a4584664c8b1f34026b96aedcc.jpg"
+                                    alt="Placeholder image">
+                            </div>
+                            <div class="a22-update-text">
+                                <p>This could be your vibe</p>
+                            </div>
+                            <span class="a22-update-time">8h</span>
+                        </div>
+
+                        <div class="a22-update-item">
+                            <div class="a22-update-image">
+                                <img src="https://i.pinimg.com/136x136/ae/0b/24/ae0b242114a9926c3c5378db6f63473e.jpg"
+                                    alt="Placeholder image">
+                            </div>
+                            <div class="a22-update-text">
+                                <p>Web and App Design for you</p>
+                            </div>
+                            <span class="a22-update-time">1d</span>
+                        </div>
+
+                        <div class="a22-update-item">
+                            <div class="a22-update-image">
+                                <img src="https://i.pinimg.com/136x136/05/3f/a8/053fa838ddb01395202a3b944688ca4f.jpg"
+                                    alt="Placeholder image">
+                            </div>
+                            <div class="a22-update-text">
+                                <p>You have a good eye</p>
+                            </div>
+                            <span class="a22-update-time">1d</span>
+                        </div>
+
+                        <div class="a22-search-item">
+                            <div class="a22-search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <div class="a22-search-text">
+                                <p>Still searching? Explore ideas related to <span>Background</span></p>
+                            </div>
+                            <span class="a22-update-time">1d</span>
+                        </div>
+
+                        <div class="a22-update-item">
+                            <div class="a22-update-image">
+                                <img src="https://i.pinimg.com/136x136/d3/6f/29/d36f29b825a38f79eb3b294c498a3fca.jpg"
+                                    alt="Placeholder image">
+                            </div>
+                            <div class="a22-update-text">
+                                <p>Weather and Climate for you</p>
+                            </div>
+                            <span class="a22-update-time">3d</span>
+                        </div>
+
+                        <div class="a22-update-item">
+                            <div class="a22-update-image">
+                                <img src="https://i.pinimg.com/136x136/f7/d2/7f/f7d27f9603b5127edefbd742fbfd0e40.jpg"
+                                    alt="Placeholder image">
+                            </div>
+                            <div class="a22-update-text">
+                                <p>These ideas are so you</p>
+                            </div>
+                            <span class="a22-update-time">3d</span>
+                        </div>
+
+                        <div class="a22-update-item">
+                            <div class="a22-update-image">
+                                <img src="https://i.pinimg.com/136x136/17/49/03/17490377c4973cae52906c2325a35db9.jpg"
+                                    alt="Placeholder image">
+                            </div>
+                            <div class="a22-update-text">
+                                <p>Black for you</p>
+                            </div>
+                            <span class="a22-update-time">3d</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="a22-feed">
+                    <div class="a22-feed-header">
+                        <h2>April 25, 2025</h2>
+                        <h1>Stay Inspired</h1>
+
+
+
+                    </div>
+
+                    <div class="a22-grid">
+                        <div class="a22-grid-item">
+                            <img src="https://i.pinimg.com/474x/a4/0d/d1/a40dd1dc246b89dfed2c97b366cf36ee.jpg"
+                                alt="nature collage">
+                            <div class="a22-item-overlay">
+                                <h3>Earthy art</h3>
+                                <h2>Nature-inspired collages</h2>
+                            </div>
+                        </div>
+
+                        <div class="a22-grid-item">
+                            <img src="https://i.pinimg.com/474x/a6/77/9f/a6779fdbe0c3466cfad6196a3cc98c7d.jpg"
+                                alt="wedding photo">
+                            <div class="a22-item-overlay">
+                                <h3>Precious moments</h3>
+                                <h2>Dreamy wedding shots</h2>
+                            </div>
+                        </div>
+                        <div class="a22-grid-item">
+                            <img src="https://i.pinimg.com/474x/04/5f/43/045f437744f3ea385d5d7c3738922003.jpg"
+                                alt="serene scene">
+                            <div class="a22-item-overlay">
+                                <h3>Step into serenity</h3>
+                                <h2>Most calming visuals</h2>
+                            </div>
+                        </div>
+
+                        <div class="a22-grid-item a22-quote-card">
+                            <img src="https://i.pinimg.com/736x/e6/42/c8/e642c8b2f93f1f0064e7b907e0c9c642.jpg"
+                                alt="gradient background">
+                            <div class="a22-item-overlay">
+                                <h3>You got this</h3>
+                                <h2>Quotes for all the positive vibes</h2>
+                            </div>
+                            <div class="a22-quote-text">
+                                I RADIATE<br>GODDESS ENERGY
+                            </div>
+                        </div>
+
+                        <div class="a22-grid-item">
+                            <img src="	https://i.pinimg.com/736x/2b/ee/8c/2bee8c0d3e2d9dccf653c4310d21ff0e.jpg"
+                                alt="garden">
+                            <div class="a22-item-overlay">
+                                <h3>Al fresco ideas</h3>
+                                <h2>Balcony garden inspiration</h2>
+                            </div>
+                        </div>
+
+                        <div class="a22-grid-item">
+                            <img src="	https://i.pinimg.com/736x/d8/7a/65/d87a65ff913c6745f62321eaef292d83.jpg"
+                                alt="person lying on grass">
+                            <div class="a22-item-overlay">
+                                <h3>Astro aesthetics</h3>
+                                <h2>It's time for Taurus season</h2>
+                            </div>
+                        </div>
+
+                        <div class="a22-grid-item">
+                            <img src="https://i.pinimg.com/474x/3c/bb/78/3cbb78099cbbea5d685676b2b65ad70a.jpg"
+                                alt="nails design">
+                            <div class="a22-item-overlay">
+                                <h3>Grounded glam</h3>
+                                <h2>Earth tone nails</h2>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="a22-feed-footer">
+                        <div class="a22-checkmark">
+                            <i class="fas fa-check" style="color: white;"></i>
+                        </div>
+                        <p>That's all for today!</p>
+                        <p>Come back tomorrow for more inspiration</p>
+                        <a href="#" class="a22-action-btn">Go to home feed</a>
+                    </div>
+                </div>
+                &nbsp;&nbsp;&nbsp;
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div class="mobile-tabs" style="
   position: fixed;
   bottom: 0;
   left: 0;
@@ -342,12 +361,12 @@
   z-index: 999;
   padding: 6px 0;
 ">
-            <div class="tab-items" style="
+        <div class="tab-items" style="
     display: flex;
     justify-content: space-around;
     align-items: center;
   ">
-                <div onclick="window.location.href='/FinalPage'" class="tab-item active" style="
+            <div onclick="window.location.href='/FinalPage'" class="tab-item active" style="
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -356,11 +375,11 @@
       padding: 6px;
       cursor: pointer;
     ">
-                    <i class="fas fa-home" style="font-size: 18px;"></i>
-                    <span>Home</span>
-                </div>
+                <i class="fas fa-home" style="font-size: 18px;"></i>
+                <span>Home</span>
+            </div>
 
-                <div class="tab-item" style="
+            <div class="tab-item" style="
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -369,11 +388,11 @@
       padding: 6px;
       cursor: pointer;
     ">
-                    <i class="fas fa-search" style="font-size: 18px;"></i>
-                    <span>Search</span>
-                </div>
+                <i class="fas fa-search" style="font-size: 18px;"></i>
+                <span>Search</span>
+            </div>
 
-                <div onclick="window.location.href='/uploadpost'" class="tab-item" style="
+            <div onclick="window.location.href='/uploadpost'" class="tab-item" style="
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -382,11 +401,11 @@
       padding: 6px;
       cursor: pointer;
     ">
-                    <i class="fas fa-plus" style="font-size: 18px;"></i>
-                    <span>Create</span>
-                </div>
+                <i class="fas fa-plus" style="font-size: 18px;"></i>
+                <span>Create</span>
+            </div>
 
-                <div class="tab-item" style="
+            <div class="tab-item" style="
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -395,11 +414,11 @@
       padding: 6px;
       cursor: pointer;
     ">
-                    <i class="fas fa-comment-dots" style="font-size: 18px;"></i>
-                    <span>Messages</span>
-                </div>
+                <i class="fas fa-comment-dots" style="font-size: 18px;"></i>
+                <span>Messages</span>
+            </div>
 
-                <div onclick="window.location.href='/account'" class="tab-item" style="
+            <div onclick="window.location.href='/account'" class="tab-item" style="
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -408,11 +427,11 @@
       padding: 6px;
       cursor: pointer;
     ">
-                    <i class="fas fa-user" style="font-size: 18px;"></i>
-                    <span>Profile</span>
-                </div>
+                <i class="fas fa-user" style="font-size: 18px;"></i>
+                <span>Profile</span>
             </div>
         </div>
+    </div>
 
 
 
