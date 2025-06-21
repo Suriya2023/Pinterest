@@ -20,16 +20,15 @@ const { router: usersRouter, User } = require('./routes/users'); // ✅ Route + 
 // Init App
 const app = express();
 
+
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  ssl: false
-}).then(() => {
-    console.log('✅ MongoDB Connected');
-  })
-  .catch((err) => {
-    console.error('❌ MongoDB Error:', err);
-  });
+  // ssl: true, // optional if using +srv URI
+})
+  .then(() => console.log("✅ MongoDB Connected"))
+  .catch((err) => console.error("❌ MongoDB Error:", err));
+
 
 
 // View Engine Setup
