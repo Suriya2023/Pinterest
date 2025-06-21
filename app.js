@@ -20,15 +20,14 @@ const { router: usersRouter, User } = require('./routes/users'); // ✅ Route + 
 // Init App
 const app = express();
 
-// MongoDB Connection
-mongoose.connect(MONGO_URL);
+mongoose.connect(process.env.MONGO_URI || 'your-mongo-uri')
+  .then(() => {
+    console.log('✅ MongoDB Connected');
+  })
+  .catch((err) => {
+    console.error('❌ MongoDB Error:', err);
+  });
 
-.then(() => {
-  console.log('✅ MongoDB Connected');
-})
-.catch((err) => {
-  console.error('❌ MongoDB Error:', err);
-});
 
 // View Engine Setup
 app.set('views', path.join(__dirname, 'views'));
