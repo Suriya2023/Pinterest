@@ -21,10 +21,8 @@ const { router: usersRouter, User } = require('./routes/users'); // ✅ Route + 
 const app = express();
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGO_URI || 'your-mongo-uri', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
+mongoose.connect(MONGO_URL);
+
 .then(() => {
   console.log('✅ MongoDB Connected');
 })
