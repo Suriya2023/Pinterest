@@ -9,43 +9,48 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const dotenv = require('dotenv');
 const MongoStore = require('connect-mongo');
-// Load env
+
+// Load .env variables
 dotenv.config();
 
 // Routes and User Schema
 const indexRouter = require('./routes/index');
-const { router: usersRouter, User } = require('./routes/users'); // ✅ Destructure both route and schema
+const { router: usersRouter, User } = require('./routes/users'); // ✅ Route + model
 
 // Init App
 const app = express();
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGO_URI || 'your-mongo-uri')
-  .then(() => {
-    console.log('✅ MongoDB Connected');
-  })
-  .catch((err) => {
-    console.error('❌ MongoDB Error:', err);
-  });
-
+mongoose.connect(process.env.MONGO_URI || 'your-mongo-uri', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => {
+  console.log('✅ MongoDB Connected');
+})
+.catch((err) => {
+  console.error('❌ MongoDB Error:', err);
+});
 
 // View Engine Setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// Middleware Setup
+// Middlewares
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// Static Files
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // for multer uploads
+// ✅ Static Folder for Post Images
+app.use('/images/uploads', express.static(path.join(__dirname, 'public/images/uploads')));
 
-// Session & Passport
+// Optional: Serve CSS/JS/Assets from public folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Sessions + Passport
 app.use(session({
-  secret: 'your-secret-key',
+  secret: process.env.SESSION_SECRET || 'your-secret-key',
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({
@@ -57,16 +62,16 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Flash Messages Middleware
+// Flash Messages + User for Views
 app.use(function (req, res, next) {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
-  res.locals.currentUser = req.user;
+  res.locals.currentUser = req.user; // For navbar/user info
   next();
 });
 
-// Passport Config using User model
+// Passport Config
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -75,11 +80,10 @@ passport.deserializeUser(User.deserializeUser());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// 404 Error Handler
+// 404 Page
 app.use((req, res, next) => {
   res.status(404).render('404', { title: '404 Not Found' });
 });
 
-// ❌ IMPORTANT: Do NOT use app.listen() here — it's handled in ./bin/www
-
+// Export app (used in bin/www)
 module.exports = app;
